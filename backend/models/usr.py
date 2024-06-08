@@ -1,6 +1,8 @@
+#!/usr/bin/python3
 from base import BaseModel
 from sqlalchemy import Column, DateTime, Integer, String
 from werkzeug.security import generate_password_hash, check_password_hash
+
 class User(BaseModel):
     __tablename__ = 'users'
 
@@ -14,7 +16,7 @@ class User(BaseModel):
         if 'password' in kwargs:
             self.set_password(kwargs['password'])
 
-    def self_password(self, password):
+    def set_password(self, password):
         """To encrypt the password before storing it in the database"""
         self.password_hash = generate_password_hash(password)
 

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from base import BaseModel
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.types import DECIMAL
