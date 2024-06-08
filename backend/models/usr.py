@@ -5,8 +5,14 @@ class User(BaseModel):
     __tablename__ = 'users'
 
     username = Column(String(50))
-    password_hash = Column(String(50))
+    password_hash = Column(String(128))
     email = Column(String(50))
+
+    def __init__(self, **kwargs):
+        """Perform encryption when creating a new user"""
+        super().__init__(**kwargs)
+        if 'password' in kwargs:
+            self.set_password(kwargs['password'])
 
     def self_password(self, password):
         """To encrypt the password before storing it in the database"""
