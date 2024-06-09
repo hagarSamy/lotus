@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-from base import BaseModel
-from sqlalchemy import Column, DateTime, Integer, String
+from models.base import BaseModel
+from sqlalchemy import Column, String
 from sqlalchemy.types import DECIMAL
+
 class Product(BaseModel):
     __tablename__ = 'products'
 
-    name = Column(String(100))
-    description = Column(String(1000))
-    owner = Column(String(100))
-    total_price = Column(DECIMAL(10, 2))
-    img_url = Column(String(1000))
+    name = Column(String(100), nullable=False)
+    description = Column(String(1000), nullable=False)
+    owner = Column(String(100), nullable=False)
+    total_price = Column(DECIMAL(10, 2), nullable=False)
+    img_url = Column(String(1000), nullable=False)

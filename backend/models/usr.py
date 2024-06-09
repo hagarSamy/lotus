@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-from base import BaseModel
-from sqlalchemy import Column, DateTime, Integer, String
+from models.base import BaseModel
+from sqlalchemy import Column, String
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(BaseModel):
     __tablename__ = 'users'
 
-    username = Column(String(50))
-    password_hash = Column(String(128))
-    email = Column(String(50))
+    username = Column(String(50), nullable=False)
+    password_hash = Column(String(128), nullable=False)
+    email = Column(String(50), nullable=False)
 
     def __init__(self, **kwargs):
         """Perform encryption when creating a new user"""
