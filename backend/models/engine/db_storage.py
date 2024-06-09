@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-from os import getenv
-from sqlalchemy import create_engine
+import os
+from sqlalchemy import create_engine, exc
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base import Base
 from models.usr import User
@@ -16,12 +16,15 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        mysql_user = getenv('LOTUS_MYSQL_USER')
-        mysql_pwd = getenv('LOTUS_MYSQL_PWD')
-        mysql_host = getenv('LOTUS_MYSQL_HOST')
-        mysql_db = getenv('LOTUS_MYSQL_DB')
-        env = getenv('LOTUS_ENV')
+        mysql_user = os.getenv('LOTUS_MYSQL_USER')
+        mysql_pwd = os.getenv('LOTUS_MYSQL_PWD')
+        mysql_host = os.getenv('LOTUS_MYSQL_HOST')
+        mysql_db = os.getenv('LOTUS_MYSQL_DB')
+        env = os.getenv('LOTUS_ENV')
         
+        if not all([mysql_user, mysql_pwd, mysql_host, mysql_db]):
+            raise ValueError("Missing one or more database environment variables")
+
         self.__engine = create_engine(f'mysql+mysqldb://{mysql_user}:{mysql_pwd}@{mysql_host}/{mysql_db}')
         
         if env == "test":
@@ -54,9 +57,9 @@ class DBStorage:
         """Commits all changes to the database"""
         try:
             self.__session.commit()
-        except:
+        except exc.SQLAlchemyError as e:
             self.__session.rollback()
-            raise
+            raise RuntimeError("Failed to commit to the database") from e
 
     def update(self, obj):
         """Updates an object in the database"""
@@ -78,4 +81,3 @@ class DBStorage:
     def close(self):
         """Call remove() method on the private session attribute"""
         self.__session.remove()
-
