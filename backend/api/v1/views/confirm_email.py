@@ -2,7 +2,7 @@
 """ objects that handle all default RestFul API actions for /confirm-email """
 from models import storage
 from api.v1.views import app_views
-from flask import abort, jsonify, make_response, request, Flask
+from flask import abort, jsonify, request, Flask
 from flasgger.utils import swag_from
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail, Message
