@@ -1,14 +1,22 @@
-from base import BaseModel
-from sqlalchemy import Column, DateTime, Integer, String
+#!/usr/bin/python3
+from models.base import BaseModel
+from sqlalchemy import Column, String
 from werkzeug.security import generate_password_hash, check_password_hash
+
 class User(BaseModel):
     __tablename__ = 'users'
 
-    username = Column(String(50))
-    password_hash = Column(String(50))
-    email = Column(String(50))
+    username = Column(String(50), nullable=False)
+    password_hash = Column(String(128), nullable=False)
+    email = Column(String(50), nullable=False)
 
-    def self_password(self, password):
+    def __init__(self, **kwargs):
+        """Perform encryption when creating a new user"""
+        super().__init__(**kwargs)
+        if 'password' in kwargs:
+            self.set_password(kwargs['password'])
+
+    def set_password(self, password):
         """To encrypt the password before storing it in the database"""
         self.password_hash = generate_password_hash(password)
 
