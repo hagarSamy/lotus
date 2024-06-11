@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /orders and /order/{id}"""
 from models import storage
-from api.v1.views import app_views
+from api.v1.views import app
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.order import Order
 
 
-@app_views.route('/orders', methods=['GET'], strict_slashes=False)
+@app.route('/orders', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/orders.yml')
 def get_orders():
     """
@@ -19,7 +19,7 @@ def get_orders():
     return jsonify({"orders": orders}), 200
 
 
-@app_views.route('/orders/<id>', methods=['GET'], strict_slashes=False)
+@app.route('/orders/<id>', methods=['GET'], strict_slashes=False)
 ###############3@swag_from('documentation/orders.yml')
 def get_an_order(id):
     """
@@ -32,7 +32,7 @@ def get_an_order(id):
     return jsonify(order.to_dict()), 200
 
 
-@app_views.route('/orders', methods=['POST'], strict_slashes=False)
+@app.route('/orders', methods=['POST'], strict_slashes=False)
 ###############3@swag_from('documentation/orders.yml')
 def get_order(id):
     """
@@ -74,7 +74,7 @@ def get_order(id):
     return jsonify(order.to_dict()), 201
 
 
-@app_views.route('/orders/<id>', methods=['PUT'], strict_slashes=False)
+@app.route('/orders/<id>', methods=['PUT'], strict_slashes=False)
 ###############3@swag_from('documentation/orders.yml')
 def update_order(id):
     """
@@ -97,7 +97,7 @@ def update_order(id):
     storage.save()
     return jsonify(order.to_dict()), 200
 
-@app_views.route('/orders/<id>', methods=['DELETE'], strict_slashes=False)
+@app.route('/orders/<id>', methods=['DELETE'], strict_slashes=False)
 ###############3@swag_from('documentation/orders.yml')
 def del_order(id):
     """

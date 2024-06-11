@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /products and /product/{id}"""
 from models import storage
-from api.v1.views import app_views
+from api.v1.views import app
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.product import Product
 
 
-@app_views.route('/products', methods=['GET'], strict_slashes=False)
+@app.route('/products', methods=['GET'], strict_slashes=False)
 #############@swag_from('documentation/products.yml')
 def get_products():
     """
@@ -19,8 +19,8 @@ def get_products():
     return jsonify({"products": products}), 200
 
 
-@app_views.route('/product/<id>', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/.yml')
+@app.route('/product/<id>', methods=['GET'], strict_slashes=False)
+#############@swag_from('documentation/.yml')
 def get_product(id):
     """
     show a specefic product by id
@@ -28,10 +28,9 @@ def get_product(id):
     product = storage.get_one(Product, id)
 
     # Return success response with the product required
-    return jsonify({"the product": product}), 200
+    return jsonify({"the_product": product}), 200
 
-
-@app_views.route('/products/<id>', methods=['PUT'], strict_slashes=False)
+@app.route('/products/<id>', methods=['PUT'], strict_slashes=False)
 ###############3@swag_from('documentation/.yml')
 def update_product(id):
     """
@@ -54,7 +53,7 @@ def update_product(id):
     storage.save()
     return jsonify(product.to_dict()), 200
 
-@app_views.route('/products/<id>', methods=['DELETE'], strict_slashes=False)
+@app.route('/products/<id>', methods=['DELETE'], strict_slashes=False)
 ###############3@swag_from('documentation/.yml')
 def del_product(id):
     """

@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /users and /user/{id} """
 from models import storage
-from api.v1.views import app_views
+from api.v1.views import app
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.user import User
 
 
-@app_views.route('/users', methods=['GET'], strict_slashes=False)
+@app.route('/users', methods=['GET'], strict_slashes=False)
 ################@swag_from('documentation/users.yml')
 def get_users():
     """
@@ -19,7 +19,7 @@ def get_users():
     return jsonify({"users": users}), 200
 
 
-@app_views.route('/user/<id>', methods=['GET'], strict_slashes=False)
+@app.route('/user/<id>', methods=['GET'], strict_slashes=False)
 ###################@swag_from('documentation/users.yml')
 def get_a_user(id):
     """
@@ -32,7 +32,7 @@ def get_a_user(id):
     return jsonify(user.to_dict()), 200
 
 
-@app_views.route('/user/<id>', methods=['DELETE'], strict_slashes=False)
+@app.route('/user/<id>', methods=['DELETE'], strict_slashes=False)
 #############@swag_from('documentation/users.yml')
 def remove_a_user(id):
     """
@@ -47,7 +47,7 @@ def remove_a_user(id):
 
     return jsonify({}), 200
 
-@app_views.route('/users/<id>', methods=['PUT'], strict_slashes=False)
+@app.route('/users/<id>', methods=['PUT'], strict_slashes=False)
 ###############3@swag_from('documentation/.yml')
 def update_user(id):
     """
@@ -70,7 +70,7 @@ def update_user(id):
     storage.save()
     return jsonify(user.to_dict()), 200
 
-@app_views.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
+@app.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
 ###############3@swag_from('documentation/.yml')
 def del_user(id):
     """
