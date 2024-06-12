@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /login """
 from models import storage
-from api.v1.views import app
+from api.v1.views import app_views
 from flask import abort, jsonify, request, current_app
 from flasgger.utils import swag_from
 from models.user import User
@@ -9,9 +9,9 @@ from datetime import datetime
 import jwt
 
 
-@app.route('/login', methods=['POST'], strict_slashes=False)
+@app_views.route('/login', methods=['POST'], strict_slashes=False)
 # to automatically generate Swagger documentation
-###################@swag_from('documentation/register.yml')
+@swag_from('documentation/register.yml')
 def login():
     """
     Process the login

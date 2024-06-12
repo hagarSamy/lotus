@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Flask Application """
 # from models import storage
-# from api.v1.views import app
+from api.v1.views import app_views
 from os import environ
 from flask import Flask, make_response, jsonify
 from flask_cors import CORS
@@ -12,19 +12,18 @@ app = Flask(__name__)
 # formatted with indentation and newlines (human-readable)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # allow requests from any origin for routes under /api/v1
-# app.register_blueprint(app)
-#################################################################################################
+app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 
-@app.teardown_appcontext
+@app_views.teardown_appcontext
 def close_db(error):
     from models import storage
     """ close the database connection after each request """
     storage.close()
 
 
-@app.errorhandler(404)
+@app_views.errorhandler(404)
 def not_found(error):
     """ 404 Error
     ---
@@ -44,8 +43,8 @@ Swagger(app)
 
 if __name__ == "__main__":
     """ Main Function """
-    host = environ.get('LOTUS_HOST')
-    port = environ.get('LOTUS_PORT')
+    host = environ.get('LOTUS_API_HOST')
+    port = environ.get('LOTUS_API_PORT')
     if not host:
         host = '0.0.0.0'
     if not port:

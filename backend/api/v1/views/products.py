@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /products and /product/{id}"""
 from models import storage
-from api import app
+from api.v1.views import app_views
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.product import Product
 
 
-@app.route('/products', methods=['GET'], strict_slashes=False)
-#############@swag_from('documentation/products.yml')
+@app_views.route('/products', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/product/all_products.yml')
 def get_products():
     """
     show the products
@@ -19,8 +19,8 @@ def get_products():
     return jsonify({"products": products}), 200
 
 
-@app.route('/product/<id>', methods=['GET'], strict_slashes=False)
-#############@swag_from('documentation/.yml')
+@app_views.route('/product/<id>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/product/get_product.yml')
 def get_product(id):
     """
     show a specefic product by id
@@ -30,8 +30,8 @@ def get_product(id):
     # Return success response with the product required
     return jsonify({"the_product": product}), 200
 
-@app.route('/products/<id>', methods=['PUT'], strict_slashes=False)
-###############3@swag_from('documentation/.yml')
+@app_views.route('/products/<id>', methods=['PUT'], strict_slashes=False)
+@swag_from('documentation/product/put_product.yml')
 def update_product(id):
     """
     updata a product
@@ -53,8 +53,8 @@ def update_product(id):
     storage.save()
     return jsonify(product.to_dict()), 200
 
-@app.route('/products/<id>', methods=['DELETE'], strict_slashes=False)
-###############3@swag_from('documentation/.yml')
+@app_views.route('/products/<id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/product/delete_product.yml')
 def del_product(id):
     """
     delete a product

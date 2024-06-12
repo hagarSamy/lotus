@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /orders and /order/{id}"""
 from models import storage
-from api import app
+from api.v1.views import app_views
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.order import Order
 
 
-@app.route('/orders', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/orders.yml')
+@app_views.route('/orders', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/order/all_orders.yml')
 def get_orders():
     """
     show the orders
@@ -19,8 +19,8 @@ def get_orders():
     return jsonify({"orders": orders}), 200
 
 
-@app.route('/orders/<id>', methods=['GET'], strict_slashes=False)
-###############3@swag_from('documentation/orders.yml')
+@app_views.route('/orders/<id>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/order/get_order.yml')
 def get_an_order(id):
     """
     show a specefic order by id
@@ -32,8 +32,8 @@ def get_an_order(id):
     return jsonify(order.to_dict()), 200
 
 
-@app.route('/orders', methods=['POST'], strict_slashes=False)
-###############3@swag_from('documentation/orders.yml')
+@app_views.route('/orders', methods=['POST'], strict_slashes=False)
+@swag_from('documentation/order/post_order.yml')
 def get_order(id):
     """
     making a new order
@@ -74,8 +74,8 @@ def get_order(id):
     return jsonify(order.to_dict()), 201
 
 
-@app.route('/orders/<id>', methods=['PUT'], strict_slashes=False)
-###############3@swag_from('documentation/orders.yml')
+@app_views.route('/orders/<id>', methods=['PUT'], strict_slashes=False)
+@swag_from('documentation/order/put_order.yml')
 def update_order(id):
     """
     updata an order
@@ -97,8 +97,8 @@ def update_order(id):
     storage.save()
     return jsonify(order.to_dict()), 200
 
-@app.route('/orders/<id>', methods=['DELETE'], strict_slashes=False)
-###############3@swag_from('documentation/orders.yml')
+@app_views.route('/orders/<id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/order/delete_order.yml')
 def del_order(id):
     """
     delete an order
