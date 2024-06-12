@@ -16,19 +16,19 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        MYSQL_USER = os.getenv('LOTUS_MYSQL_USER')
-        MYSQL_PWD = os.getenv('LOTUS_MYSQL_PWD')
-        MYSQL_HOST = os.getenv('LOTUS_MYSQL_HOST')
-        MYSQL_DB = os.getenv('LOTUS_MYSQL_DB')
-        ENV = os.getenv('LOTUS_ENV')
+        LOTUS_MYSQL_USER = os.getenv('LOTUS_MYSQL_USER')
+        LOTUS_MYSQL_PWD = os.getenv('LOTUS_MYSQL_PWD')
+        LOTUS_MYSQL_HOST = os.getenv('LOTUS_MYSQL_HOST')
+        OTUS_MYSQL_DB = os.getenv('LOTUS_MYSQL_DB')
+        LOTUS_ENV = os.getenv('LOTUS_ENV')
         
-        if not all([MYSQL_USER, MYSQL_PWD, MYSQL_HOST, MYSQL_DB]):
+        if not all([LOTUS_MYSQL_USER, LOTUS_MYSQL_PWD, LOTUS_MYSQL_HOST, OTUS_MYSQL_DB]):
             raise ValueError("Missing one or more database environment variables")
 
-        self.__engine = create_engine(f'mysql+mysqldb://{MYSQL_USER}:{MYSQL_PWD}@{MYSQL_HOST}/{mysql_db}')
+        self.__engine = create_engine(f'mysql+mysqldb://{LOTUS_MYSQL_USER}:{LOTUS_MYSQL_PWD}@{LOTUS_MYSQL_HOST}/{OTUS_MYSQL_DB}')
         
-        if ENV == "test":
-            Base.metadata.drop_all(self.__engine)
+        # if env == "test":
+        #     Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """Returns a dictionary of all objects, optionally filtered by class"""
@@ -43,9 +43,9 @@ class DBStorage:
                 all_objects.update({obj.id: obj for obj in self.__session.query(cls).all()})
             return all_objects
 
-    def get_one(self, cls, id):
-        """Returns the object based on the class and id"""
-        return self.__session.query(cls).filter_by(id=id).first()
+    def get_one(self, cls, attribute, value):
+        """Retrieve a model instance based on a specified attribute and its value."""
+        return self.__session.query(cls).filter(getattr(cls, attribute) == value).first()
 
     def new(self, obj=None):
         """Adds a new object to the database session"""

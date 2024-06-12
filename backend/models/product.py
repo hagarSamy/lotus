@@ -3,7 +3,7 @@ from models.base import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.types import DECIMAL
 
-class Product(BaseModel,Base):
+class Product(BaseModel, Base):
     __tablename__ = 'products'
 
     name = Column(String(100), nullable=False)

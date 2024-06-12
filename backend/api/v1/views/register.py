@@ -14,7 +14,8 @@ import datetime
 
 # Serializer for generating email tokens
 s = URLSafeTimedSerializer('Thisisasecret!')
-mail = Mail(app_views)
+# mail = Mail(app_views)
+mail = Mail()
 
 @app_views.route('/register', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/register.yml')

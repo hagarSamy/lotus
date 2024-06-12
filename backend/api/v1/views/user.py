@@ -1,39 +1,41 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /users and /user/{id} """
 from models import storage
-from api import app
+from api.v1.views import app_views
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.user import User
 
 
-@app.route('/users', methods=['GET'], strict_slashes=False)
-################@swag_from('documentation/users.yml')
+@app_views.route('/users', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/user/all_users.yml')
 def get_users():
     """
     show the users
     """
-    users = storage.all("User").value()
-    
-    # Return success response with the users
-    return jsonify({"users": users}), 200
+    all_users = storage.all(User).values()
+    list_users = []
+    for user in all_users:
+        list_users.append(user.to_dict())
+    return jsonify(list_users)
 
 
-@app.route('/user/<id>', methods=['GET'], strict_slashes=False)
-###################@swag_from('documentation/users.yml')
+
+@app_views.route('/user/<id>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/user/get_user.yml')
 def get_a_user(id):
     """
     show a specefic user by id
     """
-    user = storage.get(User, id)
+    user = storage.get(User, "id", id)
     if not user:
         abort(404)
 
     return jsonify(user.to_dict()), 200
 
 
-@app.route('/user/<id>', methods=['DELETE'], strict_slashes=False)
-#############@swag_from('documentation/users.yml')
+@app_views.route('/user/<id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/user/delete_user.yml')
 def remove_a_user(id):
     """
     delete a specefic user by id
@@ -47,8 +49,8 @@ def remove_a_user(id):
 
     return jsonify({}), 200
 
-@app.route('/users/<id>', methods=['PUT'], strict_slashes=False)
-###############3@swag_from('documentation/.yml')
+@app_views.route('/users/<id>', methods=['PUT'], strict_slashes=False)
+@swag_from('documentation/user/put_user.yml')
 def update_user(id):
     """
     updata a user
@@ -70,8 +72,8 @@ def update_user(id):
     storage.save()
     return jsonify(user.to_dict()), 200
 
-@app.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
-###############3@swag_from('documentation/.yml')
+@app_views.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/user/delete_user.yml')
 def del_user(id):
     """
     delete a user

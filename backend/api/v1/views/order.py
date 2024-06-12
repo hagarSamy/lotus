@@ -25,7 +25,7 @@ def get_an_order(id):
     """
     show a specefic order by id
     """
-    order = storage.get_one(Order, id)
+    order = storage.get_one(Order, "id", id)
     if not order:
         abort(404)
 

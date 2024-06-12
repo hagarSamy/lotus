@@ -9,8 +9,8 @@ from sqlalchemy.types import DECIMAL
 class Order(BaseModel, Base):
     __tablename__ = 'orders'
     
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    product_id = Column(String(60), ForeignKey('products.id'), nullable=False)
     quantity = Column(Integer, nullable=False)
     order_status = Column(String(50), nullable=False)
     total_price = Column(DECIMAL(10, 2), nullable=False)
