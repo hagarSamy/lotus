@@ -1,9 +1,9 @@
-from base import BaseModel
+from base import BaseModel, Base
 from sqlalchemy import Column, String, Boolean
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     __tablename__ = 'users'
 
     username = Column(String(50))

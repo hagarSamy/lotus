@@ -16,18 +16,18 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        mysql_user = os.getenv('LOTUS_MYSQL_USER')
-        mysql_pwd = os.getenv('LOTUS_MYSQL_PWD')
-        mysql_host = os.getenv('LOTUS_MYSQL_HOST')
-        mysql_db = os.getenv('LOTUS_MYSQL_DB')
-        env = os.getenv('LOTUS_ENV')
+        MYSQL_USER = os.getenv('LOTUS_MYSQL_USER')
+        MYSQL_PWD = os.getenv('LOTUS_MYSQL_PWD')
+        MYSQL_HOST = os.getenv('LOTUS_MYSQL_HOST')
+        MYSQL_DB = os.getenv('LOTUS_MYSQL_DB')
+        ENV = os.getenv('LOTUS_ENV')
         
-        if not all([mysql_user, mysql_pwd, mysql_host, mysql_db]):
+        if not all([MYSQL_USER, MYSQL_PWD, MYSQL_HOST, MYSQL_DB]):
             raise ValueError("Missing one or more database environment variables")
 
-        self.__engine = create_engine(f'mysql+mysqldb://{mysql_user}:{mysql_pwd}@{mysql_host}/{mysql_db}')
+        self.__engine = create_engine(f'mysql+mysqldb://{MYSQL_USER}:{MYSQL_PWD}@{MYSQL_HOST}/{mysql_db}')
         
-        if env == "test":
+        if ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):

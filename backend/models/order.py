@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from sqlalchemy import Column, Integer, ForeignKey, String
 from sqlalchemy.orm import relationship
-from models.base import BaseModel
+from models.base import BaseModel, Base
 from models.user import User
 from models.product import Product
 from sqlalchemy.types import DECIMAL
 
-class Order(BaseModel):
+class Order(BaseModel, Base):
     __tablename__ = 'orders'
     
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
