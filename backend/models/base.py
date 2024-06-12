@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
-from models.engine import storage
+# from models.engine import storage
 Base = declarative_base()
 
 class BaseModel(Base):
@@ -25,9 +25,8 @@ class BaseModel(Base):
             self.updated_at = datetime.utcnow()
 
     def save(self):
+        from models.engine import storage
         """Updates updated_at and saves the model"""
         self.updated_at = datetime.utcnow()
         storage.new(self)
         storage.save()
-
-

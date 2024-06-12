@@ -2,7 +2,7 @@
 from sqlalchemy import Column, Integer, ForeignKey, String
 from sqlalchemy.orm import relationship
 from models.base import BaseModel
-from models.usr import User
+from models.user import User
 from models.product import Product
 from sqlalchemy.types import DECIMAL
 

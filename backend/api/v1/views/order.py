@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /orders and /order/{id}"""
 from models import storage
-from api.v1.views import app
+from api import app
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.order import Order

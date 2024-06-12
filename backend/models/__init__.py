@@ -1,3 +1,6 @@
 #!/usr/bin/python3
-from models.base import BaseModel, Base
-from models.engine import storage
+from models.engine.db_storage import DBStorage
+
+# Create a singleton instance
+storage = DBStorage()
+storage.reload()

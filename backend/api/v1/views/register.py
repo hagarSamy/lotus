@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ handling all default RestFul API actions for /register """
 from models import storage
-from api.v1.views import app
+from api import app
 from flask import abort, jsonify, request, url_for, current_app
 from flasgger.utils import swag_from
 from models.user import User
@@ -24,59 +24,60 @@ def register():
     """
     try:
         data = request.get_json()
+        print(data)
     except:
         abort(400, description="Not a JSON")
 
-    required_data = ['name', 'email', 'password']
-    for field in required_data:
-        if field not in data:
-            abort(400, description=f"{field} is required")
+    # required_data = ['name', 'email', 'password']
+    # for field in required_data:
+    #     if field not in data:
+    #         abort(400, description=f"{field} is required")
 
-    name = data['name']
-    email = data['email']
-    password = data['password']
+    # name = data['name']
+    # email = data['email']
+    # password = data['password']
 
-    # Validate name
-    # checking if the regex matches the beginning of the string.
-    if not re.match(r"^[a-zA-Z ]{4,}$", name):
-        abort(400, description="Invalid name")
+    # # Validate name
+    # # checking if the regex matches the beginning of the string.
+    # if not re.match(r"^[a-zA-Z ]{4,}$", name):
+    #     abort(400, description="Invalid name")
 
-    # Validate email
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        abort(400, description="Invalid email")
+    # # Validate email
+    # if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+    #     abort(400, description="Invalid email")
 
-    # Validate password (example: at least 6 characters, at least one number)
-    if len(password) < 6 or not re.search(r"\d", password):
-        abort(400, description="Password must be at least 6 characters long and contain at least one number")
+    # # Validate password (example: at least 6 characters, at least one number)
+    # if len(password) < 6 or not re.search(r"\d", password):
+    #     abort(400, description="Password must be at least 6 characters long and contain at least one number")
 
-    # Check if the user already exists
-    user = storage.get_one(User, 'email', email)
-    if user:
-        return jsonify({'message': 'User already exists'}), 200
+    # # Check if the user already exists
+    # user = storage.get_one(User, 'email', email)
+    # if user:
+    #     return jsonify({'message': 'User already exists'}), 200
 
-    # Create a new user (assuming User model has a method to hash passwords)
-    new_user = User(name=name, email=email, password=password, is_active=False)
-    new_user.save()
+    # # Create a new user (assuming User model has a method to hash passwords)
+    # new_user = User(name=name, email=email, password=password, is_active=False)
+    # new_user.save()
 
-    # Generate a token for email confirmation
-    # serializing the email into a token that can be safely included in a URL.
-    token = s.dumps(email, salt='email-confirm')
+    # # Generate a token for email confirmation
+    # # serializing the email into a token that can be safely included in a URL.
+    # token = s.dumps(email, salt='email-confirm')
 
-    # Send a confirmation email with activation link
-    # url_for is used to ensure that the link will contain this endpoint
-    confirm_url = url_for('activate_user', token=token, _external=True)
-    msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
-    msg.body = f"""
-    Hi {name},
+    # # Send a confirmation email with activation link
+    # # url_for is used to ensure that the link will contain this endpoint
+    # confirm_url = url_for('activate_user', token=token, _external=True)
+    # msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
+    # msg.body = f"""
+    # Hi {name},
 
-    Thank you for signing up for Lotus! Please click the link to confirm your registration: {confirm_url}'
+    # Thank you for signing up for Lotus! Please click the link to confirm your registration: {confirm_url}'
 
-    If you did not sign up for a Lotus account, please ignore this email.
+    # If you did not sign up for a Lotus account, please ignore this email.
 
-    Best regards,
-    The Lotus Team
-    """
-    mail.send(msg)
+    # Best regards,
+    # The Lotus Team
+    # """
+    # mail.send(msg)
 
     # Return success response
     return jsonify({'message': 'User registered successfully. Please check your email to confirm your registration.'}), 201

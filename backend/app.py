@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Flask Application """
-from models import storage
-from api.v1.views import app_views
+# from models import storage
+# from api.v1.views import app
 from os import environ
 from flask import Flask, make_response, jsonify
 from flask_cors import CORS
@@ -12,12 +12,14 @@ app = Flask(__name__)
 # formatted with indentation and newlines (human-readable)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # allow requests from any origin for routes under /api/v1
-app.register_blueprint(app_views)
+# app.register_blueprint(app)
+#################################################################################################
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 
 @app.teardown_appcontext
 def close_db(error):
+    from models import storage
     """ close the database connection after each request """
     storage.close()
 

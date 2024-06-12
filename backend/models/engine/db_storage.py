@@ -3,7 +3,7 @@ import os
 from sqlalchemy import create_engine, exc
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base import Base
-from models.usr import User
+from models.user import User
 from models.product import Product
 from models.order import Order
 
