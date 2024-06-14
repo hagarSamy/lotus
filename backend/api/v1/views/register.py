@@ -55,7 +55,11 @@ def register():
         return jsonify({'message': 'User already exists'}), 200
 
     # Create a new user (assuming User model has a method to hash passwords)
-    new_user = User(username=name, email=email, password=password, is_active=False)
+    new_user = User(username=name, email=email, is_active=False)
+
+    # hashing the password:
+    new_user.self_password(password)
+
     # check if user is an admin
     admin_users = ["hagarsami63@gmail.com", "sabah.abdelbaset@gmail.com",
                    "lotushandicraftyc@gmail.com", "aya786930@gmail.com"]
