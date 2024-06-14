@@ -27,12 +27,12 @@ def register():
     except:
         abort(400, description="Not a JSON")
 
-    required_data = ['name', 'email', 'password']
+    required_data = ['username', 'email', 'password']
     for field in required_data:
         if field not in data:
             abort(400, description=f"{field} is required")
 
-    name = data['name']
+    name = data['username']
     email = data['email']
     password = data['password']
 
@@ -55,7 +55,7 @@ def register():
         return jsonify({'message': 'User already exists'}), 200
 
     # Create a new user (assuming User model has a method to hash passwords)
-    new_user = User(name=name, email=email, password=password, is_active=False)
+    new_user = User(username=name, email=email, password=password, is_active=False)
     # check if user is an admin
     admin_users = ["hagarsami63@gmail.com", "sabah.abdelbaset@gmail.com",
                    "lotushandicraftyc@gmail.com", "aya786930@gmail.com"]
@@ -69,7 +69,7 @@ def register():
 
     # Send a confirmation email with activation link
     # url_for is used to ensure that the link will contain this endpoint
-    confirm_url = url_for('activate_user', token=token, _external=True)
+    confirm_url = url_for('app_views.activate_user', token=token, _external=True)
     msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
     msg.body = f"""
     Hi {name},
@@ -149,7 +149,7 @@ def resend_confirmation():
     token = s.dumps(email, salt='email-confirm')
 
     # Send a confirmation email with activation link
-    confirm_url = url_for('activate_user', token=token, _external=True)
+    confirm_url = url_for('app_views.activate_user', token=token, _external=True)
     msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
     msg.body = f"""
     Hi {user.name},
