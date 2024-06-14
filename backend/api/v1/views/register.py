@@ -14,7 +14,8 @@ import datetime
 
 # Serializer for generating email tokens
 s = URLSafeTimedSerializer('Thisisasecret!')
-mail = Mail()
+# mail = Mail()
+# mail = Mail(current_app)
 
 @app_views.route('/register', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/register.yml')
@@ -85,10 +86,11 @@ def register():
     Best regards,
     The Lotus Team
     """
+    mail = Mail(current_app)
     mail.send(msg)
 
     # Return success response
-    return jsonify({'message': 'User registered successfully. Please check your email to confirm your registration.'}), 201
+    return jsonify({'message': 'Registered successfully. Please check your email to confirm your registration.', 'token': token}), 201
 
 @app_views.route('/activate/<token>', methods=['GET'], strict_slashes=False)
 def activate_user(token):
@@ -165,6 +167,7 @@ def resend_confirmation():
     Best regards,
     The Lotus Team
     """
+    mail = Mail(current_app)
     mail.send(msg)
 
     return jsonify({'message': 'A new confirmation email has been sent. Please check your email.'}), 200
