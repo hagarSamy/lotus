@@ -5,6 +5,7 @@ from api.v1.views import app_views
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.order import Order
+from models.product import *
 
 
 @app_views.route('/orders', methods=['GET'], strict_slashes=False)
@@ -34,7 +35,7 @@ def get_an_order(id):
 
 @app_views.route('/orders', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/order/post_order.yml')
-def get_order(id):
+def get_order():
     """
     making a new order
     """
@@ -54,7 +55,8 @@ def get_order(id):
             abort(400, description=f"Missing {field}")
     
     # Fetch product price from storage
-    product = storage.get_one('Product', data['product_id'])
+    prod_id = data['product_id']
+    product = storage.get_one(Product, "product_id", prod_id)
     if not product:
         abort(400, description="Invalid product_id")
     
@@ -80,7 +82,7 @@ def update_order(id):
     """
     updata an order
     """
-    order = storage.get_one(Order, id)
+    order = storage.get_one(Order, "id", id)
     if not order:
         abort(404)
 
@@ -103,7 +105,7 @@ def del_order(id):
     """
     delete an order
     """
-    order = storage.get(Order, id)
+    order = storage.get_one(Order, "id", id)
     if not order:
         abort(404)
 

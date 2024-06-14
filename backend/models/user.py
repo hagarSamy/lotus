@@ -10,6 +10,7 @@ class User(BaseModel, Base):
     password_hash = Column(String(50))
     email = Column(String(50))
     is_active = Column(Boolean, default=False)
+    is_admin = Column(Boolean, default=False)
 
     def self_password(self, password):
         """To encrypt the password before storing it in the database"""

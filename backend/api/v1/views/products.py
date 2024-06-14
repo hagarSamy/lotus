@@ -25,7 +25,7 @@ def get_product(id):
     """
     show a specefic product by id
     """
-    product = storage.get_one(Product, id)
+    product = storage.get_one(Product, "id", id)
 
     # Return success response with the product required
     return jsonify({"the_product": product}), 200
@@ -36,7 +36,7 @@ def update_product(id):
     """
     updata a product
     """
-    product = storage.get_one(Product, id)
+    product = storage.get_one(Product, "id", id)
     if not product:
         abort(404)
 
@@ -59,7 +59,7 @@ def del_product(id):
     """
     delete a product
     """
-    product = storage.get(Product, id)
+    product = storage.get(Product, "id", id)
     if not product:
         abort(404)
 

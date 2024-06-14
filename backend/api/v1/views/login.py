@@ -11,7 +11,7 @@ import jwt
 
 @app_views.route('/login', methods=['POST'], strict_slashes=False)
 # to automatically generate Swagger documentation
-@swag_from('documentation/register.yml')
+@swag_from('documentation/login.yml')
 def login():
     """
     Process the login
@@ -39,6 +39,7 @@ def login():
     # Generate a JWT for the user
     payload = {
         'user_id': user.id,
+        'is_admin': user.is_admin,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
     }
     # current_app: a proxy to handle current request

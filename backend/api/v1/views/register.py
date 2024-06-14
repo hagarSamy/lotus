@@ -14,7 +14,6 @@ import datetime
 
 # Serializer for generating email tokens
 s = URLSafeTimedSerializer('Thisisasecret!')
-# mail = Mail(app_views)
 mail = Mail()
 
 @app_views.route('/register', methods=['POST'], strict_slashes=False)
@@ -25,7 +24,6 @@ def register():
     """
     try:
         data = request.get_json()
-        print(data)
     except:
         abort(400, description="Not a JSON")
 
@@ -58,6 +56,11 @@ def register():
 
     # Create a new user (assuming User model has a method to hash passwords)
     new_user = User(name=name, email=email, password=password, is_active=False)
+    # check if user is an admin
+    admin_users = ["hagarsami63@gmail.com", "sabah.abdelbaset@gmail.com",
+                   "lotushandicraftyc@gmail.com", "aya786930@gmail.com"]
+    if email in admin_users:
+        new_user.is_admin = True
     new_user.save()
 
     # Generate a token for email confirmation
@@ -91,7 +94,6 @@ def activate_user(token):
     try:
         email = s.loads(token, salt='email-confirm', max_age=10800)  # Token valid for 3 hour
     except SignatureExpired:
-        # a need for a link to send a new confirmation
         return jsonify({'message': 'The confirmation link has expired. Please request a new confirmation email.'}), 400
     except BadSignature:
         abort(400, description="Invalid token.")
