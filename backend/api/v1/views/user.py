@@ -27,7 +27,7 @@ def get_a_user(id):
     """
     show a specefic user by id
     """
-    user = storage.get(User, "id", id)
+    user = storage.get_one(User, "id", id)
     if not user:
         abort(404)
 
@@ -40,7 +40,7 @@ def remove_a_user(id):
     """
     delete a specefic user by id
     """
-    user = storage.get(User, "id", id)
+    user = storage.get_one(User, "id", id)
     if not user:
         abort(404)
 

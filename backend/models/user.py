@@ -7,7 +7,7 @@ class User(BaseModel, Base):
     __tablename__ = 'users'
 
     username = Column(String(50), nullable=False)
-    password_hash = Column(String(50), nullable=False)
+    password_hash = Column(String(255), nullable=False)
     email = Column(String(50), nullable=False)
     is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
