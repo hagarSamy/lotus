@@ -118,7 +118,7 @@ def activate_user(token):
         'user_id': user.id,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)  # Token valid for 24 hours
     }
-    jwt_token = jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256')
+    jwt_token = jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
 
     return jsonify({'message': 'User activated successfully', 'token': jwt_token}), 200
 
