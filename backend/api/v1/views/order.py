@@ -9,12 +9,16 @@ from models.product import *
 
 
 @app_views.route('/orders', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/order/all_orders.yml')
+@swag_from('documentation/order/get_orders.yml')
 def get_orders():
     """
-    show the orders
+    Retrieves orders based on user ID
     """
-    orders = storage.all("Order").values()
+    user_id = request.args.get('user_id')
+    orders = storage.all(Order).values()
+    if user_id:
+    # Filter orders by user_id using storage.all with filter
+        orders = [order for order in orders if order.user_id == user_id]
 
     # Return success response with the orders
     return jsonify({"orders": [order.to_dict() for order in orders]}), 200

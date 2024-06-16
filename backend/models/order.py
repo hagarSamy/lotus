@@ -17,5 +17,9 @@ class Order(BaseModel, Base):
     address = Column(String(200), nullable=False)
     phone = Column(String(20), nullable=False)
     
-    user = relationship('User', backref='orders')
-    items = relationship('OrderItem', backref='order')
+    user = relationship('User', backref='orders', cascade="all, delete, delete-orphan")
+    order_items = relationship('OrderItem', backref='order', cascade="all, delete, delete-orphan")
+
+    def __init__(self, *args, **kwargs):
+        """initializes Order"""
+        super().__init__(*args, **kwargs)

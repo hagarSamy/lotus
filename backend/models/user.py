@@ -19,3 +19,6 @@ class User(BaseModel, Base):
     def check_password(self, password):
         """Verify the entered password using the stored encrypted password."""
         return check_password_hash(self.password_hash, password)
+    def __init__(self, *args, **kwargs):
+        """initializes User"""
+        super().__init__(*args, **kwargs)
