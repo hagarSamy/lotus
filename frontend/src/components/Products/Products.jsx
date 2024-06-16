@@ -33,7 +33,9 @@ export default function Products() {
 
   // to get all products from API
   let getAllProducts = async () => {
-    let { data } = await axios.get("https://fakestoreapi.com/products");
+    // first test code by fake APIs
+    // let { data } = await axios.get("https://fakestoreapi.com/products");
+    let { data } = await axios.get("http://localhost:5000/api/v1/products");
     setProductItems(data); //put data in holder function
     // console.log(data);
   };
@@ -64,13 +66,13 @@ export default function Products() {
                     data-bs-target="#exampleModal"
                     onClick={(ele) => getImage(ele)}
                     style={{ width: "200px", height: "300px" }}
-                    src={item.image}
+                    src={item.img_url}
                     alt=""
                   />
                   <hr />
                   <div className="">
                     <p maxlength="10" className="text-center text-muted">
-                      {item.title} ...
+                      {item.name} ...
                     </p>
                     <h5>owner: {item.owner}</h5>
                     <h5>price: {item.price}</h5>

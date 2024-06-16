@@ -20,12 +20,12 @@ export default function Cart() {
         <div className="card-body p-4">
           <div className="row align-items-center">
             <div className="col-md-4">
-              <img src={item.image} className="img-fluid w-25" alt={item.title} />
+              <img src={item.img_url} className="img-fluid w-25" alt={item.name} />
             </div>
             <div className="col-md-2 d-flex justify-content-center">
               <div>
                 <p className="small text-muted mb-4 pb-2">Name</p>
-                <p className="lead fw-normal mb-0">{item.title}</p>
+                <p className="lead fw-normal mb-0">{item.name}</p>
               </div>
             </div>
             <div className="col-md-2 d-flex justify-content-center">

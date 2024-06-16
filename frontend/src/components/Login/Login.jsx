@@ -50,7 +50,6 @@ export default function Login({saveUserData}) {
   let submitForm = async (e) => {
     e.preventDefault(); // prevent default reload of the form
     if (validateUserData()) {
-      // let { data } = await axios.post(
         let { data } = await axios.post(
         "http://localhost:5000/api/v1/login",
         user
