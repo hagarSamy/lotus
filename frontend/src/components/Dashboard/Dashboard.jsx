@@ -49,7 +49,7 @@ export default function Dashboard() {
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get("http://localhost:5000/products");
+    const response = await axios.get("http://localhost:5000/api/v1/products");
     setProducts(response.data);
   };
 
