@@ -40,6 +40,7 @@ def login():
     payload = {
         'user_id': user.id,
         'is_admin': user.is_admin,
+        'username': user.username,
         # 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
         'exp': datetime.utcnow() + timedelta(hours=24)
     }

@@ -72,17 +72,17 @@ def update_user(id):
     storage.save()
     return jsonify(user.to_dict()), 200
 
-@app_views.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
-@swag_from('documentation/user/delete_user.yml')
-def del_user(id):
-    """
-    delete a user
-    """
-    user = storage.get_one(User, "id", id)
-    if not user:
-        abort(404)
+# @app_views.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
+# @swag_from('documentation/user/delete_user.yml')
+# def del_user(id):
+#     """
+#     delete a user
+#     """
+#     user = storage.get_one(User, "id", id)
+#     if not user:
+#         abort(404)
 
-    storage.delete(user)
-    storage.save()
+#     storage.delete(user)
+#     storage.save()
 
-    return jsonify({}), 200
+#     return jsonify({}), 200

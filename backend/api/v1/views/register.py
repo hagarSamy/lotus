@@ -74,30 +74,45 @@ def register():
 
     # Send a confirmation email with activation link
     # url_for is used to ensure that the link will contain this endpoint
-    confirm_url = url_for('app_views.activate_user', token=token, _external=True)
+    # confirm_url = url_for('app_views.activate_user', token=token, _external=True)
     msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
     msg.body = f"""
     Hi {name},
 
-    Thank you for signing up for Lotus! Please click the link to confirm your registration: {confirm_url}'
-    
-    If you did not sign up for a Lotus account, please ignore this email.
+    Thank you for signing up for LOTUS!
 
-    Best regards,
+    To complete your registration and start using LOTUS, please click the link below to activate your account:
+    
+    OR
+
+    If you can't click it, please copy and paste it into your web browser:
+
+    This link will expire in 3 hours. If you don't activate your account within [Number] hours, you will need to request a new confirmation email.
+
+    We look forward to welcoming you to the LOTUS community!
+
+    Sincerely,
+
     The Lotus Team
     """
     mail = Mail(current_app)
     mail.send(msg)
 
     # Return success response
-    return jsonify({'message': 'Registered successfully. Please check your email to confirm your registration.', 'token': token}), 201
+    return jsonify({'message': 'Registered successfully.', 'token': token}), 201
 
-@app_views.route('/activate/<token>', methods=['GET'], strict_slashes=False)
+@app_views.route('/activate/<token>', methods=['POST'], strict_slashes=False)
 def activate_user(token):
     """
     Handle the activation of the user account.
     """
     try:
+        # Retrieve token from request data (assuming sent from frontend form)
+        data = request.get_json()
+        token = data['token']
+        if not token:
+            abort(400, description="Missing activation token.")
+        
         email = s.loads(token, salt='email-confirm', max_age=10800)  # Token valid for 3 hour
     except SignatureExpired:
         return jsonify({'message': 'The confirmation link has expired. Please request a new confirmation email.'}), 400
@@ -155,14 +170,16 @@ def resend_confirmation():
     token = s.dumps(email, salt='email-confirm')
 
     # Send a confirmation email with activation link
-    confirm_url = url_for('app_views.activate_user', token=token, _external=True)
+    # confirm_url = url_for('app_views.activate_user', token=token, _external=True)
     msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
     msg.body = f"""
     Hi {user.name},
 
-    It looks like you need a new confirmation link. To complete your registration, please click the link to confirm your registration: {confirm_url}
+    It looks like you need a new confirmation link. To complete your registration, please click the link to confirm your registration:
+    
+    
 
-    If you did not sign up for a Lotus account, please ignore this email.
+    If you did not ask for a new email, please ignore this email.
 
     Best regards,
     The Lotus Team
@@ -170,4 +187,4 @@ def resend_confirmation():
     mail = Mail(current_app)
     mail.send(msg)
 
-    return jsonify({'message': 'A new confirmation email has been sent. Please check your email.'}), 200
+    return jsonify({'message': 'A new confirmation email has been sent.', 'token': token}), 200
