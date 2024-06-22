@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat+Alternates&family=Roboto:wght@300&display=swap');
+
+$bgcolor: #ffff;
+// $bgcolor:lightgray;
+$lightBgColor:rgba(30,41,82,0.1);
+$fontColor: black;
+$borderColor:#a8a8a83d;
+$hoverColor:#e65f78;
+$borderHeight:1px;
+$secondFontColor:#949cb0;
+$fontSize:20px;
+body {
+  background-color:$bgcolor;
+  color:$fontColor;
+  // font-family: "Dancing Script", cursive;
+  padding-top: 40px;
+  font-size: $fontSize;
+}
+
+a, a :hover{
+  color:$fontColor !important;
+}
+
