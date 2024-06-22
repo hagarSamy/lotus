@@ -59,7 +59,7 @@ def del_product(id):
     """
     delete a product
     """
-    product = storage.get(Product, "id", id)
+    product = storage.get_one(Product, "id", id)
     if not product:
         abort(404)
 
