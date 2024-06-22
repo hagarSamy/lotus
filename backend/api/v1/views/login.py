@@ -5,7 +5,7 @@ from api.v1.views import app_views
 from flask import abort, jsonify, request, current_app
 from flasgger.utils import swag_from
 from models.user import User
-from datetime import datetime
+from datetime import datetime, timedelta
 import jwt
 
 
@@ -40,10 +40,11 @@ def login():
     payload = {
         'user_id': user.id,
         'is_admin': user.is_admin,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
+        # 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
+        'exp': datetime.utcnow() + timedelta(hours=24)
     }
     # current_app: a proxy to handle current request
-    jwt_token = jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256')
+    jwt_token = jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
 
     # If login successful
     return jsonify({'message': 'Login successful', 'token': jwt_token}), 200

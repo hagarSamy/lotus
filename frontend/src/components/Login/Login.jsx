@@ -18,7 +18,7 @@ export default function Login({saveUserData}) {
         tlds: { allow: ["com"] },
       }),
       password: Joi.string()
-        .pattern(/^[A-Z]/)
+        // .pattern(/^[A-Z]/)
         .required(),
     });
     let validationResult = rules.validate(user, { abortEarly: false });
@@ -50,11 +50,13 @@ export default function Login({saveUserData}) {
   let submitForm = async (e) => {
     e.preventDefault(); // prevent default reload of the form
     if (validateUserData()) {
-      let { data } = await axios.post(
-        "http://localhost:5000/users",
+      // let { data } = await axios.post(
+        let data = await axios.post(
+        "http://localhost:5000/api/v1/login",
         user
       );
-      if (data.message === "success") {
+      console.log(data)
+      if (data.message === "Login successful") {
         localStorage.setItem('token', data.token);
         saveUserData();
         goToHome();
