@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styles from './Login.module.scss'
 import Joi from "joi";
 import { Link, useNavigate } from "react-router-dom";
 export default function Login({saveUserData}) {
@@ -50,10 +51,10 @@ export default function Login({saveUserData}) {
     e.preventDefault(); // prevent default reload of the form
     if (validateUserData()) {
       let { data } = await axios.post(
-        "https://route-egypt-api.herokuapp.com/signin",
+        "http://localhost:5000/users",
         user
       );
-      if (data.message == "success") {
+      if (data.message === "success") {
         localStorage.setItem('token', data.token);
         saveUserData();
         goToHome();
@@ -107,13 +108,10 @@ export default function Login({saveUserData}) {
               Login
             </button>
             
-            <div className=" my-5 d-flex  justify-content-between">
-              <i className="fa fa-arrow-left mx-2">              
-              <Link  className="text-decoration-none" to="/" >home</Link>
-              </i>
-              <i className="fa fa-arrow-right mx-2">              
-              <Link  className="text-decoration-none" to="/register" >create account</Link>
-              </i>
+            <div className=" my-5 text-center">
+              <Link  className={`${styles.nLink} text-decoration-none`} to="/" >home</Link>
+              <br />
+              <Link  className={`${styles.nLink} text-decoration-none`} to="/register" >create account</Link>
             </div>
           </form>
         </div>

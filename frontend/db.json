@@ -1,0 +1,56 @@
+{
+  "products": [
+    {
+      "id": "2",
+      "name": "Product 2",
+      "description": "",
+      "owner": "",
+      "total_price": 150,
+      "img_url": ""
+    },
+    {
+      "id": "3",
+      "name": "Product 3",
+      "description": "",
+      "owner": "",
+      "total_price": 200,
+      "img_url": ""
+    },
+    {
+      "id": "4",
+      "name": "ff",
+      "description": "bbnbnb",
+      "owner": "sabah",
+      "total_price": "599",
+      "img_url": ""
+    }
+  ],
+  "users": [
+    {
+      "username": "anotherUser",
+      "password_hash": "anotherHashedPassword456",
+      "email": "another@example.com",
+      "is_active": true,
+      "is_admin": true,
+      "id": "31fe"
+    },
+    {
+      "id": "efbd",
+      "username": "sabah",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Sabah",
+      "confirmPassword": "Sabah"
+    },
+    {
+      "id": "8b7f",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Sabah"
+    },
+    {
+      "id": "tyyt",
+      "username": "",
+      "email": "sabah@hh.com",
+      "name": "www"
+    }
+  ]
+}

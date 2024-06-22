@@ -12,6 +12,7 @@ import Productdetails from '../Productdetails/Productdetails';
 import Notfound from '../Notfound/Notfound';
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {Online, Offline} from 'react-detect-offline';
 
@@ -51,16 +52,30 @@ let logoutUser = ()=>{
       {path:'productdetails/:id', element:<Productdetails />},
       {path:'cart', element:<Cart />},
       {path:'profile', element:<ProtectedRoute userData={userData}><Profile userData={userData}/></ProtectedRoute>},
-      {path:'dashboard', element:<ProtectedRoute userData={userData}><Dashboard userData={userData}/></ProtectedRoute>}
+      {path:'dashboard', element:<Dashboard userData={userData}/>}
     ]}
   ])
   return (
     <>
     <div>
-      <Online>
+    <ToastContainer
+position="bottom-right"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+/>
+    <RouterProvider router={routes} />
+
+      {/* <Online>
         <RouterProvider router={routes} />
       </Online>
-      <Offline>you are offline</Offline>
+      <Offline>you are offline</Offline> */}
     </div>
     </>
   );

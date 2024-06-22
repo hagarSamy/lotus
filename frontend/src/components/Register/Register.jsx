@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styles from './Register.module.scss'
 import Joi from "joi";
 import { Link, useNavigate } from "react-router-dom";
 export default function Register() {
@@ -53,7 +54,8 @@ export default function Register() {
   let submitForm = async (e) => {
     e.preventDefault(); // prevent default reload of the form
     if (validateUserData()) {
-      let { data } = await axios.post("https://route-egypt-api.herokuapp.com/signup", user);
+      let { data } = await axios.post("http://localhost:5000/users", user);
+      console.log(data);
       if (data.message == "success") {
         goToLogin();
       } else {
@@ -72,8 +74,6 @@ export default function Register() {
     // deep copy from user object
     let myUser = { ...user };
     myUser[e.target.name] = e.target.value;
-    myUser['last_name'] = "Ahmed";
-    myUser['age'] = 25;
     setUser(myUser);
     console.log(myUser);
   };
@@ -136,13 +136,10 @@ export default function Register() {
             <button className="w-100 btn btn-outline-danger my-3 px-5">
               Register
             </button>
-            <div className=" my-5 d-flex  justify-content-between">
-              <i className="fa fa-arrow-left mx-2">              
-              <Link  className="text-decoration-none" to="/" >home</Link>
-              </i>
-              <i className="fa fa-arrow-right mx-2">              
-              <Link  className="text-decoration-none" to="/login" > Login</Link>
-              </i>
+            <div className=" my-5 text-center">             
+              <Link className={`${styles.nLink} text-decoration-none`} to="/" >back to home</Link>
+<br />
+              <Link className={`${styles.nLink} text-decoration-none`} to="/login" > already have account, Login</Link>
             </div>
                       </form>
         </div>
