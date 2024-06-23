@@ -80,7 +80,7 @@ def register():
     Hi {name},
 
     Thank you for signing up for Lotus! Please click the link to confirm your registration: {confirm_url}'
-
+    
     If you did not sign up for a Lotus account, please ignore this email.
 
     Best regards,

@@ -16,7 +16,7 @@ def get_products():
     products = storage.all("Product").values()
 
     # Return success response with the products
-    return jsonify({"products": products}), 200
+    return jsonify({"products":  [product.to_dict() for product in products]}), 200
 
 
 @app_views.route('/product/<id>', methods=['GET'], strict_slashes=False)
@@ -27,8 +27,45 @@ def get_product(id):
     """
     product = storage.get_one(Product, "id", id)
 
+    if not product:
+        abort(404, description="Product not found")
+
     # Return success response with the product required
-    return jsonify({"the_product": product}), 200
+    return jsonify({"the_product": product.to_dict()}), 200
+
+
+@app_views.route('/products', methods=['POST'], strict_slashes=False)
+@swag_from('documentation/product/post_product.yml')
+def create_product():
+    """
+    Create a new product
+    """
+    try:
+        data = request.get_json()
+    except:
+        abort(400, description="Not a JSON")
+
+    required_fields = ['name', 'description', 'owner', 'price', 'img_url', 'stock']
+    for field in required_fields:
+        if field not in data:
+            abort(400, description=f"{field} is required")
+
+    # Create a new Product instance
+    new_product = Product(
+        name=data['name'],
+        description=data['description'],
+        owner=data['owner'],
+        price=data['price'],
+        img_url=data['img_url'],
+        stock=data['stock']
+    )
+
+    # Add the new product to the database
+    storage.new(new_product)
+    storage.save()
+
+    # Return success response with the new product data
+    return jsonify(new_product.to_dict()), 201
 
 @app_views.route('/products/<id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/product/put_product.yml')
@@ -38,7 +75,7 @@ def update_product(id):
     """
     product = storage.get_one(Product, "id", id)
     if not product:
-        abort(404)
+        abort(404, description="Product not found")
 
     try:
         data = request.get_json()
@@ -61,7 +98,7 @@ def del_product(id):
     """
     product = storage.get_one(Product, "id", id)
     if not product:
-        abort(404)
+        abort(404, description="Product not found")
 
     storage.delete(product)
     storage.save()

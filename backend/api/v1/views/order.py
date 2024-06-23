@@ -4,7 +4,7 @@ from models import storage
 from api.v1.views import app_views
 from flask import jsonify, request, abort
 from flasgger.utils import swag_from
-from models.order import Order
+from models.order import *
 from models.product import *
 
 
@@ -17,7 +17,7 @@ def get_orders():
     orders = storage.all("Order").values()
 
     # Return success response with the orders
-    return jsonify({"orders": orders}), 200
+    return jsonify({"orders": [order.to_dict() for order in orders]}), 200
 
 
 @app_views.route('/orders/<id>', methods=['GET'], strict_slashes=False)
@@ -35,7 +35,7 @@ def get_an_order(id):
 
 @app_views.route('/orders', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/order/post_order.yml')
-def get_order():
+def create_order():
     """
     making a new order
     """
@@ -48,30 +48,62 @@ def get_order():
         abort(400, description="Not a JSON")
     
 
-    required_fields = ['user_id', 'product_id', 'quantity', 'address', 'phone']
+    required_fields = ['user_id', 'products', 'address', 'phone']
 
     for field in required_fields:
         if field not in data:
             abort(400, description=f"Missing {field}")
+
+    # Validate products
+    if not isinstance(data['products'], list) or len(data['products']) == 0:
+        abort(400, description="Products must be a non-empty list")
+
+    total_price = 0
+    order_items = []
     
     # Fetch product price from storage
-    prod_id = data['product_id']
-    product = storage.get_one(Product, "product_id", prod_id)
-    if not product:
-        abort(400, description="Invalid product_id")
-    
-    # Calculate the total price
-    total_price = product.price * data['quantity']
+    for item in data['products']:
+        if 'product_id' not in item or 'quantity' not in item:
+            abort(400, description="Each product must include product_id and quantity")
 
-    # Set default order status
-    order_status = 'Pending'
-        
-    order_data = {field : data[field] for field in required_fields}
-    order_data['total_price'] = total_price
-    order_data['order_status'] = order_status
+        prod_id = item['product_id']
+        product = storage.get_one(Product, "id", prod_id)
+        if not product:
+            abort(400, description="Invalid product_id")
+
+        # Check if requested quantity is available
+        if product.stock < item['quantity']:
+            abort(400, description="Insufficient stock")
+
+        # calculating total price
+        item_price = product.price * item['quantity']
+        total_price += item_price
+
+        order_item = OrderItem(
+            product_id=prod_id,
+            quantity=item['quantity'],
+            price=item_price # Store the total price for this item
+        )
+        order_items.append(order_item)
+
+        # Update product stock
+        product.stock -= item['quantity']
+
+        order_data = {
+        'user_id': data['user_id'],
+        'address': data['address'],
+        'phone': data['phone'],
+        'total_price': total_price,
+        'order_status': 'Pending'
+        }
     
     order = Order(**order_data)
     storage.new(order)
+    storage.save()
+
+    for order_item in order_items:
+        order_item.order_id = order.id
+        storage.new(order_item)
     storage.save()
     return jsonify(order.to_dict()), 201
 

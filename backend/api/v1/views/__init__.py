@@ -10,3 +10,4 @@ from api.v1.views.register import *
 from api.v1.views.user import *
 from api.v1.views.products import *
 from api.v1.views.order import *
+from api.v1.views.cart import *
