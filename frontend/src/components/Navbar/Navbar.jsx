@@ -30,23 +30,16 @@ export default function Navbar({userData, logoutUser}) {
 
 {/* /////////////////////////////////////// */}
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-      {/* ///////will remove////// */}
-    <li className={`${styles.item} nav-item px-1`}>
+      {/* /////////// */}
+      {userData? <>
+        <div className={`${styles.item} px-1`}>
+        <Link to="profile">Hello, {userData.username}</Link>
+        </div>
+        <li className={`${styles.item} nav-item px-1`}>
         <Link className={`${styles.dLink} nav-link position-relative border-0 mx-3`} to="cart">
         Cart 
         <i className="text-danger fa fa-shopping-cart fa-1x"></i>
         <span className='position-absolute top-0 start-100 translate-middle badge rounded-5 text-muted bg-success'>{ x.cartCount }</span>
-        </Link>
-      </li>
-      {/* /////////// */}
-      {userData? <>
-        <div className={`${styles.item} px-1`}>
-        <Link to="profile">Hello, {userData.name}</Link>
-        </div>
-        <li className={`${styles.item} nav-item px-1`}>
-        <Link className={`${styles.dLink} nav-link position-relative`} to="cart">
-        Cart <i className='fa-solid fa-fa-cart-shopping fa-1x'></i>
-        <span className='position-absolute top-0 start-100 translate-middle  rounded-2 '>0</span>
         </Link>
       </li>
       <li className={`${styles.item} nav-item px-1`}>
@@ -61,9 +54,15 @@ export default function Navbar({userData, logoutUser}) {
       </li>
       </>}
 
-    <li className={`${styles.item} nav-item px-1`}>
+      {userData?.is_admin?
+ <>
+        <li className={`${styles.item} nav-item px-1`}>
         <Link className={`${styles.dLink} nav-link`} to="dashboard">DashBoard</Link>
-    </li>
+        </li>
+      </> : ""}
+
+
+
   
     </ul>
 
