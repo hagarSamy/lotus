@@ -35,7 +35,6 @@ export default function Productdetails() {
              Quisquam ea autem voluptas praesentium, voluptate optio quasi 
              blanditiis sapiente incidunt atque. 
              Ab doloremque nesciunt quae et consectetur ex modi culpa maiores?
-
              {productItem.description}
           </p>
         </div>
