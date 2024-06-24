@@ -12,7 +12,7 @@ export default function Dashboard() {
       name: "",
       description: "",
       owner: "",
-      total_price: 0,
+      price: 0,
       img_url: "",
     },
   ]);
@@ -22,7 +22,7 @@ export default function Dashboard() {
     name: "",
     description: "",
     owner: "",
-    total_price: 0,
+    price: 0,
     img_url: "",
   });
 
@@ -49,28 +49,29 @@ export default function Dashboard() {
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get("http://localhost:5000/products");
-    setProducts(response.data);
+    // const response = await axios.get("http://localhost:5000/products");
+    const {data} = await axios.get("http://localhost:5000/api/v1/products");
+    setProducts(data);
   };
 
   const addProduct = async () => {
-    const response = await axios.post(
-      "http://localhost:5000/products",
+    const {data} = await axios.post(
+      "http://localhost:5000/api/v1/products",
       newProduct
     );
-    setProducts([...products, response.data]);
+    setProducts([...products, data]);
     setNewProduct({
       id: "", // Assuming ID generation happens server-side or is auto-incremented
       name: "",
       description: "",
       owner: "",
-      total_price: 0, // Decimal value, initialize as 0
+      price: 0, // Decimal value, initialize as 0
       img_url: "",
     });
   };
 
   const deleteProduct = async (id) => {
-    await axios.delete(`http://localhost:5000/products/${id}`);
+    await axios.delete(`http://localhost:5000/api/v1/products/${id}`);
     setProducts(products.filter((product) => product.id !== id));
   };
 
