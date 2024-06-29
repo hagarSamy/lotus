@@ -1,0 +1,26 @@
+@import '../../index.scss';
+
+.cart {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+img {
+    border-radius: 8px;
+  }
+  
+  .cart.font-semibold {
+    color: #333;
+  }

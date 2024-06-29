@@ -1,0 +1,394 @@
+{
+  "products": [
+    {
+      "id": "841eb660-f630-4a1b-8e10-1786a254eaef",
+      "name": "product",
+      "description": "product klklk klkl ",
+      "owner": "sabah",
+      "price": 30,
+      "img_url": "",
+      "stock": 10
+    },
+    {
+      "id": "c6609b8c-9946-4fbc-872d-7906c8fcce31",
+      "created_at": "12/24/2023",
+      "updated_at": "12/25/2023",
+      "name": "sapien  quam ",
+      "description": "Phasellus in felis.",
+      "owner": "Skell Labon",
+      "price": 78,
+      "img_url": "https://patch.com/blandit/non/interdum/in/ante/vestibulum/ante.jsp?lorem=erat&integer=eros&tincidunt=viverra&ante=eget&vel=congue&ipsum=eget&praesent=semper&blandit=rutrum&lacinia=nulla&erat=nunc&vestibulum=purus&sed=phasellus&magna=in&at=felis&nunc=donec&commodo=semper&placerat=sapien&praesent=a&blandit=libero&nam=nam&nulla=dui&integer=proin&pede=leo&justo=odio&lacinia=porttitor&eget=id&tincidunt=consequat&eget=in&tempus=consequat&vel=ut&pede=nulla&morbi=sed&porttitor=accumsan&lorem=felis&id=ut&ligula=at&suspendisse=dolor&ornare=quis&consequat=odio&lectus=consequat&in=varius&est=integer&risus=ac&auctor=leo&sed=pellentesque&tristique=ultrices&in=mattis&tempus=odio&sit=donec&amet=vitae&sem=nisi&fusce=nam&consequat=ultrices&nulla=libero&nisl=non&nunc=mattis&nisl=pulvinar&duis=nulla&bibendum=pede&felis=ullamcorper&sed=augue&interdum=a&venenatis=suscipit&turpis=nulla&enim=elit&blandit=ac&mi=nulla&in=sed&porttitor=vel&pede=enim&justo=sit&eu=amet&massa=nunc&donec=viverra&dapibus=dapibus",
+      "stock": 13
+    },
+    {
+      "id": "57a40bd7-1520-45ab-83b0-c9673dfbc92a",
+      "name": "product",
+      "description": "product klklk klkl ",
+      "owner": "sabah",
+      "price": 30,
+      "img_url": "",
+      "stock": 10
+    },
+    {
+      "id": "a13592fa-5667-4f9a-a75a-9815c37bfc3c",
+      "name": "product",
+      "description": "product klklk klkl ",
+      "owner": "sabah",
+      "price": 30,
+      "img_url": "",
+      "stock": 10
+    },
+    {
+      "id": "ed1da2e9-36e6-452e-9183-3efef723a8f5",
+      "name": "product",
+      "description": "product klklk klkl ",
+      "owner": "sabah",
+      "price": 30,
+      "img_url": "",
+      "stock": 10
+    },
+    {
+      "id": "3392796a-e245-4ffe-8173-af3fd37958b4",
+      "name": "product",
+      "description": "product klklk klkl ",
+      "owner": "sabah",
+      "price": 30,
+      "img_url": "",
+      "stock": 10
+    },
+    {
+      "id": "b340dc23-21a1-4695-aaca-610790d437b5",
+      "name": "product",
+      "description": "product klklk klkl ",
+      "owner": "sabah",
+      "price": 30,
+      "img_url": "",
+      "stock": 10
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d2",
+      "created_at": "12/24/2023",
+      "updated_at": "11/9/2023",
+      "name": "quam pharetra",
+      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+      "owner": "Brit Littlekit",
+      "price": 67,
+      "img_url": "https://squarespace.com/orci/nullam.xml?eget=arcu&massa=sed&tempor=augue&convallis=aliquam&nulla=erat&neque=volutpat&libero=in&convallis=congue&eget=etiam&eleifend=justo&luctus=etiam&ultricies=pretium&eu=iaculis&nibh=justo&quisque=in&id=hac&justo=habitasse&sit=platea&amet=dictumst&sapien=etiam&dignissim=faucibus&vestibulum=cursus&vestibulum=urna&ante=ut&ipsum=tellus&primis=nulla&in=ut&faucibus=erat&orci=id&luctus=mauris&et=vulputate&ultrices=elementum",
+      "stock": 20
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d3",
+      "name": "web-02",
+      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+      "owner": "Brit Littlekit",
+      "price": 0,
+      "img_url": "",
+      "stock": 0,
+      "total_price": "66"
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d5",
+      "name": "Sabah Ahmed",
+      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+      "owner": "Brit Littlekit",
+      "price": 0,
+      "img_url": "",
+      "stock": "3",
+      "total_price": "67"
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d6",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0,
+      "img_url": ""
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d9",
+      "name": "lb-01",
+      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+      "owner": "Brit Littlekit",
+      "price": "88",
+      "stock": "9",
+      "img_url": "",
+      "total_price": ""
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d1",
+      "name": "web-01",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0,
+      "img_url": ""
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d8",
+      "name": "lb-01",
+      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+      "owner": "Brit Littlekit",
+      "price": 0,
+      "img_url": "",
+      "stock": 0
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35d0",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "img_url": "",
+      "stock": 0
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35f1",
+      "img_url": "",
+      "name": "test",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "www",
+      "description": "",
+      "owner": "Brit Littlekit",
+      "price": 0,
+      "stock": 9
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "test product",
+      "description": "isa uploaded",
+      "owner": "mohamed",
+      "price": 20,
+      "stock": 4
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "product_test",
+      "description": "tested",
+      "owner": "doaa",
+      "price": 200,
+      "stock": 5
+    },
+    {
+      "id": "8",
+      "img_url": "http://res.cloudinary.com/dps8pco1z/image/upload/v1719550877/hvdv8gueh6gmvitvfmnp.jpg",
+      "name": "finall",
+      "description": "",
+      "owner": "moaaz",
+      "price": 30,
+      "stock": 5
+    },
+    {
+      "id": "9",
+      "img_url": "https://res.cloudinary.com/dps8pco1z/image/upload/v1719551961/a1blxkmvddx9nhtxtnxx.jpg",
+      "name": "www",
+      "description": "dsds",
+      "owner": "Brit Littlekit",
+      "price": 2000,
+      "stock": 4
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "sssssssssss",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "test1",
+      "description": "test1",
+      "owner": "sabah",
+      "price": 200,
+      "stock": 10
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "",
+      "img_url": "",
+      "name": "",
+      "description": "",
+      "owner": "",
+      "price": 0,
+      "stock": 0
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35f8",
+      "img_url": "https://res.cloudinary.com/dps8pco1z/image/upload/v1719554377/keckenz8igkt49ltsmod.jpg",
+      "name": "mine",
+      "description": "updated correctly",
+      "owner": "",
+      "price": "30",
+      "stock": "1"
+    },
+    {
+      "id": "f55ca516-576f-4744-b9f4-ea55973c35f9",
+      "img_url": "https://res.cloudinary.com/dps8pco1z/image/upload/v1719553351/hek3ejfzdljlv61wdqby.jpg",
+      "name": "test1",
+      "description": "ghghghg",
+      "owner": "fff",
+      "price": 20,
+      "stock": 4
+    }
+  ],
+  "users": [
+    {
+      "id": "3",
+      "username": "",
+      "email": ""
+    },
+    {
+      "id": "4",
+      "username": "",
+      "email": "sdsfsff@gmail.com"
+    },
+    {
+      "id": "5",
+      "username": "sabah",
+      "email": "sdsfsff@gmail.com"
+    },
+    {
+      "id": "6",
+      "username": "",
+      "email": ""
+    },
+    {
+      "id": "7",
+      "username": "",
+      "email": "johndoe@example.com"
+    },
+    {
+      "id": "8",
+      "username": "",
+      "email": ""
+    },
+    {
+      "id": "9",
+      "username": "",
+      "email": "eng_bobos89@yahoo.com"
+    },
+    {
+      "id": "10",
+      "username": "",
+      "email": "eng_bobos89@yahoo.com"
+    },
+    {
+      "id": "11",
+      "username": "ds",
+      "email": "eng_bobos89@yahoo.com"
+    },
+    {
+      "id": "2629",
+      "username": "sabah",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Sabah",
+      "confirmPassword": "Sabah"
+    },
+    {
+      "id": "f78d",
+      "username": "sabah",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Sabah",
+      "confirmPassword": "Sabah"
+    },
+    {
+      "id": "74b0",
+      "username": "Mohamed",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Ahmed",
+      "confirmPassword": "Ahmed"
+    },
+    {
+      "id": "20f5",
+      "username": "sabah",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Sabah",
+      "confirmPassword": "Sabah"
+    },
+    {
+      "id": "ce66",
+      "username": "sabah",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Moha",
+      "confirmPassword": "Moha"
+    },
+    {
+      "id": "6897",
+      "username": "sabah",
+      "email": "sdsfsff@gmail.com",
+      "password": "Sabah",
+      "confirmPassword": "Sabah"
+    },
+    {
+      "id": "69f6",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Moha"
+    },
+    {
+      "id": "4b2a",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Moha"
+    },
+    {
+      "id": "35d1",
+      "email": "eng_bobos89@yahoo.com",
+      "password": "Moha"
+    }
+  ]
+}
