@@ -50,9 +50,9 @@ Base = declarative_base()
 
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
-    id = Column(String(60), primary_key=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow)
+    id = Column(String(60), primary_key=True, nullable=False, default=lambda: str(uuid.uuid4()))
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""
@@ -60,16 +60,26 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
-            if kwargs.get("created_at", None) and type(self.created_at) is str:
+            if "created_at" in kwargs and isinstance(self.created_at, str):
                 self.created_at = datetime.strptime(kwargs["created_at"], time)
-            else:
+            elif "created_at" not in kwargs:
                 self.created_at = datetime.utcnow()
-            if kwargs.get("updated_at", None) and type(self.updated_at) is str:
+            if "updated_at" in kwargs and isinstance(self.updated_at, str):
                 self.updated_at = datetime.strptime(kwargs["updated_at"], time)
-            else:
+            elif "updated_at" not in kwargs:
                 self.updated_at = datetime.utcnow()
-            if kwargs.get("id", None) is None:
+            if "id" not in kwargs:
                 self.id = str(uuid.uuid4())
+            # if kwargs.get("created_at", None) and type(self.created_at) is str:
+            #     self.created_at = datetime.strptime(kwargs["created_at"], time)
+            # else:
+            #     self.created_at = datetime.utcnow()
+            # if kwargs.get("updated_at", None) and type(self.updated_at) is str:
+            #     self.updated_at = datetime.strptime(kwargs["updated_at"], time)
+            # else:
+            #     self.updated_at = datetime.utcnow()
+            # if kwargs.get("id", None) is None:
+            #     self.id = str(uuid.uuid4())
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.utcnow()
@@ -89,9 +99,9 @@ class BaseModel:
     def to_dict(self, save_fs=None):
         """returns a dictionary containing all keys/values of the instance"""
         new_dict = self.__dict__.copy()
-        if "created_at" in new_dict:
+        if "created_at" in new_dict and new_dict["created_at"] is not None:
             new_dict["created_at"] = new_dict["created_at"].strftime(time)
-        if "updated_at" in new_dict:
+        if "updated_at" in new_dict and new_dict["updated_at"] is not None:
             new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:

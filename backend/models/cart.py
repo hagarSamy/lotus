@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 class Cart(BaseModel, Base):
     __tablename__ = 'carts'
     user_id = Column(ForeignKey('users.id'), nullable=False)
-    items = relationship('CartItem', backref='cart', cascade="all, delete-delete-orphan")
+    items = relationship('CartItem', backref='cart')
 
     def __init__(self, *args, **kwargs):
         """initializes Cart"""

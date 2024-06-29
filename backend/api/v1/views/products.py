@@ -13,10 +13,10 @@ def get_products():
     """
     show the products
     """
-    products = storage.all("Product").values()
+    products = storage.all(Product).values()
 
     # Return success response with the products
-    return jsonify({"products":  [product.to_dict() for product in products]}), 200
+    return jsonify([product.to_dict() for product in products]), 200
 
 
 @app_views.route('/product/<id>', methods=['GET'], strict_slashes=False)
@@ -31,7 +31,7 @@ def get_product(id):
         abort(404, description="Product not found")
 
     # Return success response with the product required
-    return jsonify({"the_product": product.to_dict()}), 200
+    return jsonify(product.to_dict()), 200
 
 
 @app_views.route('/products', methods=['POST'], strict_slashes=False)
@@ -82,7 +82,7 @@ def update_product(id):
     except:
         abort(400, description="Not a JSON")
 
-    ignore = ['id', 'created_at', 'updated_at']
+    ignore = ['id', 'created_at', 'updated_at', '__class__']
 
     for k, v in data.items():
         if k not in ignore:

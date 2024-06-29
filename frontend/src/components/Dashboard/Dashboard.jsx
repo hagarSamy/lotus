@@ -51,7 +51,33 @@ export default function Dashboard() {
   const fetchProducts = async () => {
     // const response = await axios.get("http://localhost:5000/products");
     const {data} = await axios.get("http://localhost:5000/api/v1/products");
-    setProducts(data);
+    setProducts(data || [
+      {
+        "id": "2",
+        "name": "Product 2",
+        "description": "",
+        "owner": "",
+        "total_price": 150,
+        "img_url": ""
+      },
+      {
+        "id": "3",
+        "name": "Product 3",
+        "description": "",
+        "owner": "",
+        "total_price": 200,
+        "img_url": ""
+      },
+      {
+        "id": "4",
+        "name": "ff",
+        "description": "bbnbnb",
+        "owner": "sabah",
+        "total_price": "599",
+        "img_url": ""
+      }
+    ]);
+    // setProducts(data);
   };
 
   const addProduct = async () => {
@@ -111,19 +137,19 @@ export default function Dashboard() {
     setSelectedProduct(response.data);
     setIsEditing(true); // Set editing mode
   };
-  const updateProduct = async () => {
-    const response = await axios.put(
-      `http://localhost:5000/products/${selectedProduct.id}`,
-      selectedProduct
-    );
-    // Update local state with the updated product
-    setProducts(
-      products.map((product) =>
-        product.id === selectedProduct.id ? response.data : product
-      )
-    );
-    setSelectedProduct(null); // Clear the selected product
-  };
+  // const updateProduct = async () => {
+  //   const response = await axios.put(
+  //     `http://localhost:5000/products/${selectedProduct.id}`,
+  //     selectedProduct
+  //   );
+  //   // Update local state with the updated product
+  //   setProducts(
+  //     products.map((product) =>
+  //       product.id === selectedProduct.id ? response.data : product
+  //     )
+  //   );
+  //   setSelectedProduct(null); // Clear the selected product
+  // };
 
   return (
     <>
@@ -372,7 +398,7 @@ export default function Dashboard() {
                       </tr>
                     </thead>
                     <tbody>
-                      {products.map((product) => (
+                      {products?.map((product) => (
                         <tr key={product.id}>
                           <td className="px-2">{product.id}</td>
                           <td className="px-2">{product.name}</td>

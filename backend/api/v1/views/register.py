@@ -74,7 +74,7 @@ def register():
 
     # Send a confirmation email with activation link
     # url_for is used to ensure that the link will contain this endpoint
-    # confirm_url = url_for('app_views.activate_user', token=token, _external=True)
+    confirm_url = url_for('app_views.activate_user', token=token, _external=True)
     msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
     msg.body = f"""
     Hi {name},
@@ -82,6 +82,8 @@ def register():
     Thank you for signing up for LOTUS!
 
     To complete your registration and start using LOTUS, please click the link below to activate your account:
+    
+    {confirm_url}
     
     OR
 
@@ -101,15 +103,16 @@ def register():
     # Return success response
     return jsonify({'message': 'Registered successfully.', 'token': token}), 201
 
-@app_views.route('/activate/<token>', methods=['POST'], strict_slashes=False)
+@app_views.route('/activate/<token>', methods=['GET'], strict_slashes=False)
 def activate_user(token):
     """
     Handle the activation of the user account.
     """
     try:
         # Retrieve token from request data (assuming sent from frontend form)
-        data = request.get_json()
-        token = data['token']
+        # data = request.get_json()
+        # token = data['token']
+        token = token
         if not token:
             abort(400, description="Missing activation token.")
         
@@ -170,14 +173,14 @@ def resend_confirmation():
     token = s.dumps(email, salt='email-confirm')
 
     # Send a confirmation email with activation link
-    # confirm_url = url_for('app_views.activate_user', token=token, _external=True)
+    confirm_url = url_for('app_views.activate_user', token=token, _external=True)
     msg = Message('Confirm Your Account', sender='lotushandicraftyc@gmail.com', recipients=[email])
     msg.body = f"""
     Hi {user.name},
 
     It looks like you need a new confirmation link. To complete your registration, please click the link to confirm your registration:
     
-    
+    {confirm_url}
 
     If you did not ask for a new email, please ignore this email.
 

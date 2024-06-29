@@ -21,7 +21,7 @@ def get_users():
 
 
 
-@app_views.route('/user/<id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/users/<id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/user/get_user.yml')
 def get_a_user(id):
     """
@@ -34,7 +34,7 @@ def get_a_user(id):
     return jsonify(user.to_dict()), 200
 
 
-@app_views.route('/user/<id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/user/delete_user.yml')
 def remove_a_user(id):
     """
@@ -64,7 +64,7 @@ def update_user(id):
     except:
         abort(400, description="Not a JSON")
 
-    ignore = ['id', 'created_at', 'updated_at']
+    ignore = ['id', 'created_at', 'updated_at', '__class__']
 
     for k, v in data.items():
         if k not in ignore:
@@ -72,17 +72,10 @@ def update_user(id):
     storage.save()
     return jsonify(user.to_dict()), 200
 
-# @app_views.route('/users/<id>', methods=['DELETE'], strict_slashes=False)
-# @swag_from('documentation/user/delete_user.yml')
-# def del_user(id):
+# @app_views.route('/users', methods=['POST'], strict_slashes=False)
+# @swag_from('documentation/user/create_user.yml')
+# def create_user(id):
 #     """
-#     delete a user
+#     create a user
 #     """
-#     user = storage.get_one(User, "id", id)
-#     if not user:
-#         abort(404)
-
-#     storage.delete(user)
-#     storage.save()
-
-#     return jsonify({}), 200
+#     required_fields = 

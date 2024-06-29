@@ -111,7 +111,7 @@ const uploadImage = async ()=>{
        <div className="mb-2">
           <label htmlFor="owner">Owner:</label>
           <input
-            type="file"
+            type="text"
             name="img_url"
             className="form-control"
             placeholder="owner"

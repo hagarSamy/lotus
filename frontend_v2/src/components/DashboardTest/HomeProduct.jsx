@@ -13,13 +13,13 @@ export default function HomeProduct() {
       const [products, setproducts] = useState([]);
     
       const getAllproducts = async () => {
-        try {
+      //   try {
           const { data } = await axios.get("http://localhost:5000/api/v1/products");
           setproducts(data);
           console.log(data);
-        } catch (error) {
-          console.error("Error getting products from DB:", error);
-        }
+      //   } catch (error) {
+      //     console.error("Error getting products from DB:", error);
+      //   }
       };
       //  delete Product
       const handleDeleteProduct = async (id) => {
@@ -28,7 +28,7 @@ export default function HomeProduct() {
         );
         if (confirm) {
           await axios.delete(`http://localhost:5000/api/v1/products/${id}`);
-          location.reload();
+          // location.reload();
         }
       };
     
@@ -69,7 +69,7 @@ export default function HomeProduct() {
                               <tr key={product.id}>
                                 <td>{product.id}</td>
                                 <td>
-                                  <img className="w-100" src={product.img_url} />
+                                  <img className="w-100" src={product.img_url} alt="" />
                                 </td>
                                 <td>{product?.name}</td>
                                 <td>{product?.description}</td>

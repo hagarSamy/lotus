@@ -59,7 +59,7 @@ class DBStorage:
             self.__session.commit()
         except exc.SQLAlchemyError as e:
             self.__session.rollback()
-            raise RuntimeError("Failed to commit to the database") from e
+            raise RuntimeError(f"Failed to commit to the database: {str(e)}") from e
 
     def update(self, obj):
         """Updates an object in the database"""

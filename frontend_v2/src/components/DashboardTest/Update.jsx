@@ -30,7 +30,7 @@ export default function Update() {
 
       const getUser = async () => {
         try {
-          const {data} = await axios.get(`http://localhost:5000/api/v1/user/${id}`);
+          const {data} = await axios.get(`http://localhost:5000/api/v1/users/${id}`);
           console.log(data);
           setUpdateUser(data);
         } catch (error) {

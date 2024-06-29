@@ -33,8 +33,8 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # allow requests from any origin for routes under /api/v1
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
-
+# cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/v1/*": {"origins": 'http://localhost:3000'}})
 mail = Mail(app)
 
 
