@@ -2,14 +2,11 @@
 """ handling all default RestFul API actions cart"""
 from models import storage
 from api.v1.views import app_views
-from flask import jsonify, request, abort, current_app
+from flask import jsonify, request, abort
 from flasgger.utils import swag_from
 from models.cart_item import CartItem
 from models.product import *
 from models.order import Order
-from models.user import User
-from flask_mail import Mail, Message
-
 
 @app_views.route('/cart/<user_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/cart/get_cart.yml')
@@ -135,56 +132,8 @@ def remove_from_cart(id):
     return jsonify({}), 200
 
 
-@app_views.route('/cart/checkout/<user_id>', methods=['POST'], strict_slashes=False)
-def checkout(user_id):
-    """
-    Checkout: Create an order from cart items.
-    """
-    try:
-        data = request.get_json()
-    except:
-        abort(400, description="Not a JSON")
-    email = data['email']
-    if not email:
-        abort(400, description="Email is required")
-    user = storage.get_one(User, "id", user_id)
-    name = user.username
-    
-    # Fetch cart items for the user
-    # cart_items = storage.all(CartItem).values()
-    # if user_id:
-    # # Filter itemss by user_id using storage.all with filter
-    #     cart_itemss = [item for item in cart_items if item.user_id == user_id]
-    # if not cart_items:
-    #     abort(404, description="No cart items found for the user")
-
-    # # Create a new order
-    # new_order = Order(user_id=user_id)
-    # storage.new(new_order)
-    # storage.save()
-
-    # # Associate cart items with the new order
-    # for item in cart_items:
-    #     item.order_id = new_order.id
-    #     storage.save()
-    
-    msg = Message('Confirming order', sender='lotushandicraftyc@gmail.com', recipients=[email])
-    msg.body = f"""
-    Hi {name},
-
-    Your order has been confirmed. Thank you for shopping with us!
-    
-    The Lotus Team
-    """
-    mail = Mail(current_app)
-    try:
-        mail.send(msg)
-    except:
-        abort(400, description="Email not sent")
-    # Clear cart items after checkout
-    # for item in cart_items:
-    #     storage.delete(item)
-    # storage.save()
-    
-    # Return success response
-    return jsonify({'message': 'Order confirmed.'}), 201    
+# @app_views.route('/cart/checkout/<user_id>', methods=['POST'], strict_slashes=False)
+# def checkout(user_id):
+#     """
+#     Checkout: Create an order from cart items.
+#     """

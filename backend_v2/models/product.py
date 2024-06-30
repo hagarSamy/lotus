@@ -16,7 +16,7 @@ class Product(BaseModel, Base):
     # number of items available
     stock = Column(Integer, nullable=False)
     order_items = relationship('OrderItem', backref='product')
-    # cart_items = relationship('CartItem', backref='product')
+    cart_items = relationship('CartItem', backref='product')
 
     def __init__(self, *args, **kwargs):
         """initializes Product"""
