@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Joi from "joi";
 import styles from "./Cart.module.scss";
 import { CartContext } from "../Context/Context";
 import Confetti from 'react-confetti';
 import { toast } from 'react-toastify';
 
-export default function Cart() {
+export default function Cart({ userData }) {
   const notify = () => toast.success('🦄 WOW order packaged, contact to you soon', {
     position: "bottom-right",
     autoClose: 3000,
@@ -25,6 +26,12 @@ export default function Cart() {
     phone: "",
     address: ""
   });
+
+    // /////////////////// navigation ///////////////////////
+    let navigate = useNavigate();
+    let goToproduct = () => {
+      navigate("/products");
+    };
   /////////////  validation //////////////////
   const [errorDetails, setErrors] = useState([]);
 
@@ -57,23 +64,35 @@ export default function Cart() {
     return <p style={{color:'red'}}>{x[0]?.message}</p>;
   }
   //////////////////// what happen when press register ///////////////////////
-  const [errorMsg, setErrorMsg] = useState("");
-
   let submitForm = async (e) => {
     e.preventDefault(); // prevent default reload of the form
     if (validateUserData()) {
-      // let { data } = await axios.post("http://localhost:5000/api/v1/register", user);
       notify();
       setShowConfetti(true);
       setTimeout(()=>setShowConfetti(false),7000);
-      // if (data.message == "Registered successfully. Please check your email to confirm your registration.") {
-      //   goToLogin();
-      // } else {
-      //   setErrorMsg(data.message); // set by error message from backend
-      // }
+
+      const payload = {
+        cartItems: cartItems.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity
+        })),
+        user: user
+      };
+
+      
+      let { data } = await axios.post(`http://localhost:5000/api/v1/cart/checkout/${userData.id}`, payload);
+      if (data.message == "success") {
+       localStorage.removeItem('cartItems');
+        localStorage.removeItem('cartCount');
+       cartItems = [];
+        goToproduct();
+      } else {
+        alert('Fail to contact you on mail, please try again !!!!');
+      }
 
     }
- 
   };
 
   /////////// get Input values from form //////////////
@@ -87,7 +106,7 @@ export default function Cart() {
 
   const { cartItems } = useContext(CartContext);
   const { removeFromCart } = useContext(CartContext);
-  console.log("Adding item from cart:", cartItems);
+  console.log("Adding items from cart:", cartItems);
 
   return (
     <>

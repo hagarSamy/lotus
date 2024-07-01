@@ -63,7 +63,7 @@ export default function CartContextProvider({ children }) {
         "cartState",
         JSON.stringify({ cartItems: updatedCartItems, cartCount: newCartCount })
       );
-      location.reload();
+     //  location.reload();
     }
   };
   

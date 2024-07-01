@@ -35,9 +35,10 @@ export default function Products() {
   let getAllProducts = async () => {
     // first test code by fake APIs
     // let { data } = await axios.get("https://fakestoreapi.com/products");
-    let { data } = await axios.get("http://localhost:5000/api/v1/products");
+    // let { data } = await axios.get("http://localhost:5000/api/v1/products");
+    let { data } = await axios.get("http://localhost:3000/products");
     setProductItems(data); //put data in holder function
-    // console.log(data);
+    console.log(data);
   };
   console.log(productItems);
 

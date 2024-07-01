@@ -3,6 +3,8 @@ import styles from "./About.module.scss";
 import { Link } from "react-router-dom";
 
 export default function About({ userData }) {
+
+  
   return (
     <>
       <div className="container" id="#aboutSec">
@@ -11,7 +13,7 @@ export default function About({ userData }) {
             <h3 className="mb-2">About Us...</h3>
           </div>
           <div className="container">
-            <div className="row">
+            <div className="row mb-5">
               <div className="col-md-6">
                 {/* /////////////////// */}
 
@@ -103,9 +105,42 @@ export default function About({ userData }) {
                 )}
               </div>
             </div>
+
+            <div className="row mt-3">
+
+              
+            <div className="col-md-6">
+                <div className="">
+                  <h2 className="text-center">
+                  what we offer to you ?
+                  </h2>
+                  <h3>
+                  We believe in empowering creators to share their passion without financial barriers.
+                   That's why we charge no upfront fees for listing your products on our platform.
+                    Whether you're a seasoned artisan or just starting out,
+                     you can list your items and begin reaching customers without any initial investment.                  </h3>
+                </div>
+              </div>
+              {/* ///////////////////////////// */}
+              <div className="col-md-6">
+                {/* /////////////////// */}
+
+                <div className="bg-white shadow-lg rounded-2">
+                <img
+                          src={require("./IMG-20240615-WA0029.jpg")}
+                          className=" w-100  rounded-2"
+                          alt="..."
+                        />
+                </div>
+
+                {/* /////////////////// */}
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
+
     </>
   );
 }

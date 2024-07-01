@@ -58,7 +58,7 @@ export default function Home({ userData }) {
               </button>
               <button className={`btn ${styles.btn2} m-2 px-3 mt-5`}>
                 <Link className="text-decoration-none" to="register">
-                  Register
+                  Register for free
                 </Link>
               </button>
             </div>
@@ -72,7 +72,6 @@ export default function Home({ userData }) {
         <div className={`${styles.constTitle} text-center mb-5`}>
           <h3 className="mb-2 pt-5">Our statistics...</h3>
         </div>
-
         <div className="count py-5">
           <div className="container">
             <div className="row g-4">
@@ -109,6 +108,88 @@ export default function Home({ userData }) {
           </div>
         </div>
       </div>
+
+{/* //// developer /// */}
+<div className={`${styles.developer}`}>
+        <div className={`${styles.constTitle} text-center mb-2`}>
+          <h3 className="mb-2 pt-5">Our Developer..</h3>
+        </div>
+
+<div className="count py-5">
+  <div className="container m-auto">
+    <div className={` flex-wrap d-flex justify-content-center align-items-center`}>
+{/* ////dev1 */}
+    <div className={`${styles.flipcard} `}>
+      <div className={`${styles.flipcardfront}`}>
+        <div className={`${styles.inner}`}>
+          <h3>Hajar</h3>
+        </div>
+      </div>
+      <div className={`${styles.flipcardback}`}>
+        <div className={`${styles.inner}`}>
+          {/* <h3>Hajar samy</h3> */}
+          <p>
+            Backend developer
+            <br />
+            ALX student @ holberton school
+            <br />
+            <i class="fab fa-github text-white m-2"></i>
+            <i class="fab fa-twitter text-white m-2"></i>
+          </p>
+        </div>
+      </div>
+    </div>
+{/* //// dev2 */}
+    <div className={`${styles.flipcard}`}>
+      <div className={`${styles.flipcardfront}`}>
+        <div className={`${styles.inner}`}>
+          <h3>Aya</h3>
+        </div>
+      </div>
+      <div className={`${styles.flipcardback}`}>
+        <div className={`${styles.inner}`}>
+          {/* <h3>Aya Anwar</h3> */}
+          <p>
+            Backend developer
+            <br />
+            ALX student @ holberton school
+            <br />
+            <i class="fab fa-github text-white m-2"></i>
+            <i class="fab fa-twitter text-white m-2"></i>
+          </p>
+        </div>
+      </div>
+    </div>
+
+{/* //// dev3  */}
+    <div className={`${styles.flipcard} `}>
+      <div className={`${styles.flipcardfront}`}>
+        <div className={`${styles.inner}`}>
+          <h3>Sabah</h3>
+        </div>
+      </div>
+      <div className={`${styles.flipcardback}`}>
+        <div className={`${styles.inner}`}>
+          {/* <h3>Sabah Ahmed</h3> */}
+          <p>
+            Frontend developer
+            <br />
+            ALX student @ holberton school
+            <br />
+            <i class="fab fa-github text-white m-2"></i>
+            <i class="fab fa-twitter text-white m-2"></i>
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
+  </div>
 
       <Contact />
       <Footer />

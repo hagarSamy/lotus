@@ -26,7 +26,7 @@ export default function HomeUser() {
         );
         if (confirm) {
           await axios.delete(`http://localhost:5000/api/v1/users/${id}`);
-          location.reload();
+         // location.reload();
         }
       };
     

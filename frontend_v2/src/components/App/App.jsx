@@ -57,15 +57,15 @@ let logoutUser = ()=>{
       {path:'register', element:<Register />},
       {path:'products', element:<Products />},
       {path:'productdetails/:id', element:<Productdetails />},
-      {path:'cart', element:<Cart />},
+      {path:'cart', element:<ProtectedRoute userData={userData}><Cart /></ProtectedRoute>},
       {path:'profile', element:<ProtectedRoute userData={userData}><Profile userData={userData}/></ProtectedRoute>},
-      {path:'dashboardtest', element:<DashboardTest userData={userData}/>},
-      {path:'manageproduct', element:<HomeProduct />},
-      {path:'manageuser', element:<HomeUser />},
-      {path:'create', element:<Create />},
-      {path:'createproduct', element:<CreateProduct />},
-      {path:'update/:id', element:<Update />},
-      {path:'updateproduct/:id', element:<UpdateProduct />}
+      {path:'dashboardtest', element:<ProtectedRoute userData={userData}><DashboardTest userData={userData}/></ProtectedRoute>},
+      {path:'manageproduct', element:<ProtectedRoute userData={userData}><HomeProduct /></ProtectedRoute>},
+      {path:'manageuser', element:<ProtectedRoute userData={userData}><HomeUser /></ProtectedRoute>},
+      {path:'create', element:<ProtectedRoute userData={userData}><Create /></ProtectedRoute>},
+      {path:'createproduct', element:<ProtectedRoute userData={userData}><CreateProduct /></ProtectedRoute>},
+      {path:'update/:id', element:<ProtectedRoute userData={userData}><Update /></ProtectedRoute>},
+      {path:'updateproduct/:id', element:<ProtectedRoute userData={userData}><UpdateProduct /></ProtectedRoute>}
     ]}
   ])
   return (

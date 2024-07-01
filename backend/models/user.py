@@ -1,6 +1,7 @@
 from models.base import BaseModel, Base
 from sqlalchemy import Column, String, Boolean
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
@@ -11,6 +12,9 @@ class User(BaseModel, Base):
     email = Column(String(50), nullable=False)
     is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
+
+    orders = relationship('Order', backref='user', cascade="all, delete, delete-orphan")
+
 
     def self_password(self, password):
         """To encrypt the password before storing it in the database"""
