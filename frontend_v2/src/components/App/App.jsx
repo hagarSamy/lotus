@@ -83,11 +83,16 @@ draggable
 pauseOnHover
 theme="dark"
 />
-    <RouterProvider router={routes} />
-      {/* <Online>
+    {/* <RouterProvider router={routes} /> */}
+      <Online>
         <RouterProvider router={routes} />
       </Online>
-      <Offline>you are offline</Offline> */}
+      <Offline className={`d-flex justify-content-center align-items-center bg-warning`}>
+        <div>
+          <h1> you are offline </h1>
+          <h1>check your internet connection</h1>
+        </div>
+        </Offline>
     </div>
     </>
   );

@@ -28,7 +28,7 @@ export default function HomeProduct() {
         );
         if (confirm) {
           await axios.delete(`http://localhost:5000/api/v1/products/${id}`);
-          // location.reload();
+          window.location.reload();
         }
       };
     

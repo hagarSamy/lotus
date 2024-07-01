@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Joi from "joi";
-import styles from "./Cart.module.scss";
+// import styles from "./Cart.module.scss";
 import { CartContext } from "../Context/Context";
 import Confetti from 'react-confetti';
 import { toast } from 'react-toastify';
@@ -83,7 +83,7 @@ export default function Cart({ userData }) {
 
       
       let { data } = await axios.post(`http://localhost:5000/api/v1/cart/checkout/${userData.id}`, payload);
-      if (data.message == "success") {
+      if (data.message === "success") {
        localStorage.removeItem('cartItems');
         localStorage.removeItem('cartCount');
        cartItems = [];
@@ -104,7 +104,7 @@ export default function Cart({ userData }) {
     console.log(myUser);
   };
 
-  const { cartItems } = useContext(CartContext);
+  let { cartItems } = useContext(CartContext);
   const { removeFromCart } = useContext(CartContext);
   console.log("Adding items from cart:", cartItems);
 

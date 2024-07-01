@@ -5,17 +5,34 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Typed from "typed.js";
+import $ from "jquery"
 
 export default function Home({ userData }) {
   /////////////////////////////
+  $('.list-unstyled li.test11').click(function(){
+    let curColor = $(this).css('backgroundColor'); // Get the background color of the clicked element
+    alert(curColor);
+});
+
+$('.list-unstyled li.test22').click(function(){
+  let curColor = $(this).css('backgroundColor'); // Get the background color of the clicked element
+  alert(curColor);
+});
+
+$('.list-unstyled li.test33').click(function(){
+  let curColor = $(this).css('backgroundColor'); // Get the background color of the clicked element
+  $('.theme').css('color', curColor);
+  alert(curColor);
+});
 
   const el = React.useRef(null);
 
   React.useEffect(() => {
+    $('.test').fadeOut(2500).slideUp(2500);
     const typed = new Typed(el.current, {
       strings: [
-        "with care, treasures with love.",
-        " with care, treasures with love.",
+        "with care, treasure with love.",
+        " with care, treasure with love.",
       ],
       smartBackspace: true,
       loop: true,
@@ -29,24 +46,26 @@ export default function Home({ userData }) {
     };
   }, []);
 
+
   return (
     <>
       <div className={`${styles.startSection}`}></div>
       <div className={`${styles.colorBox}`}>
         <div className={`${styles.colorOption}`}>
           <ul className="list-unstyled">
-            <li className={`${styles.item} ${styles.item1}`}></li>
-            <li className={`${styles.item} ${styles.item2}`}></li>
-            <li className={`${styles.item} ${styles.item3}`}></li>
+            <li className={`${styles.item} ${styles.item1} test11`}></li>
+            <li className={`${styles.item} ${styles.item2} test22`}></li>
+            <li className={`${styles.item} ${styles.item3} rest33`}></li>
           </ul>
         </div>
         <i className="fa fa-cog fa-spin"></i>
       </div>
       {/* ///////////////Header section /////////////// */}
       <div className={`${styles.homeSec}`}>
+        <div className="test bg-info fixed-top"> Have anice time, happy shopping</div>
         <div>
-          <h1 className={`${styles.headFont} my-5`}>Lotus</h1>
-          <h2>
+          <h1 className={`${styles.headFont} my-5 theme`}>Lotus</h1>
+          <h2 className="">
             Crafted <span ref={el} />
           </h2>
           {userData ? "" : (
@@ -70,7 +89,7 @@ export default function Home({ userData }) {
 
       <div className={`${styles.statistic}`}>
         <div className={`${styles.constTitle} text-center mb-4`}>
-          <h3 className="mb-2 pt-5">Our statistics...</h3>
+          <h3 className="mb-2 pt-5 theme">Our statistics...</h3>
         </div>
         <div className="count py-3">
           <div className="container">
@@ -112,7 +131,7 @@ export default function Home({ userData }) {
 {/* //// developer /// */}
 <div className={`${styles.developer}`}>
         <div className={`${styles.constTitle} text-center mb-2`}>
-          <h3 className="mb-2 pt-5">Our Developer..</h3>
+          <h3 className="mb-2 pt-5 theme">Our Developer..</h3>
         </div>
 
 <div className="count py-5">

@@ -8,7 +8,7 @@ const CartContext = createContext({
 
 export default function CartContextProvider({ children }) {
   const [cartCount, setCartCount] = useState(0);
-  const [cartItems, setCartItems] = useState([]);
+  let [cartItems, setCartItems] = useState([]);
 
   function changeCart() {
     setCartCount(cartCount + 1);
@@ -63,7 +63,7 @@ export default function CartContextProvider({ children }) {
         "cartState",
         JSON.stringify({ cartItems: updatedCartItems, cartCount: newCartCount })
       );
-      location.reload();
+      window.location.reload();
     }
   };
   
