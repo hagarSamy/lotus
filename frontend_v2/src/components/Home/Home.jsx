@@ -69,10 +69,10 @@ export default function Home({ userData }) {
       <About userData={userData} />
 
       <div className={`${styles.statistic}`}>
-        <div className={`${styles.constTitle} text-center mb-5`}>
+        <div className={`${styles.constTitle} text-center mb-4`}>
           <h3 className="mb-2 pt-5">Our statistics...</h3>
         </div>
-        <div className="count py-5">
+        <div className="count py-3">
           <div className="container">
             <div className="row g-4">
               <div className="col-lg-3 col-md-6">
@@ -133,8 +133,10 @@ export default function Home({ userData }) {
             <br />
             ALX student @ holberton school
             <br />
-            <i class="fab fa-github text-white m-2"></i>
-            <i class="fab fa-twitter text-white m-2"></i>
+            <Link to={`https://github.com/hagarSamy`} target="_blank" rel="noopener noreferrer"><i className="fab fa-github text-white m-2"></i></Link>
+            <Link to={`https://x.com/HagarSamy0`} target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter text-white m-2"></i></Link>
+            <Link to={`https://www.linkedin.com/in/hagar-samy-420414220/`} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin text-white m-2"></i></Link>
+
           </p>
         </div>
       </div>
@@ -154,8 +156,9 @@ export default function Home({ userData }) {
             <br />
             ALX student @ holberton school
             <br />
-            <i class="fab fa-github text-white m-2"></i>
-            <i class="fab fa-twitter text-white m-2"></i>
+            <Link to={`https://github.com/aya-cs22`} target="_blank" rel="noopener noreferrer"><i className="fab fa-github text-white m-2"></i></Link>
+            <Link to={`https://x.com/AyaAnwar501`} target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter text-white m-2"></i></Link>
+            <Link to={`https://www.linkedin.com/in/aya-anwar-473115279/`} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin text-white m-2"></i></Link>
           </p>
         </div>
       </div>
@@ -176,8 +179,9 @@ export default function Home({ userData }) {
             <br />
             ALX student @ holberton school
             <br />
-            <i class="fab fa-github text-white m-2"></i>
-            <i class="fab fa-twitter text-white m-2"></i>
+            <Link to={`https://github.com/sabah-hue`} target="_blank" rel="noopener noreferrer"><i className="fab fa-github text-white m-2"></i></Link>
+            <Link to={`https://x.com/SabahAhmed36`} target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter text-white m-2"></i></Link>
+            <Link to={`https://www.linkedin.com/in/sabah-ahmed-0a2a5b100/`} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin text-white m-2"></i></Link>
 
           </p>
         </div>
@@ -187,7 +191,6 @@ export default function Home({ userData }) {
     </div>
   </div>
 </div>
-
 
   </div>
 

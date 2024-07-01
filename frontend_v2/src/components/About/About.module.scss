@@ -1,4 +1,7 @@
 @import '../../index.scss';
+h2{
+    color: #e65f78 !important;
+  }
 
 .constTitle h3{
     color:#e65f78;
@@ -53,3 +56,41 @@
     background-color:transparent;
 }
 
+// /////////////////////////
+.fadeIn {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+  
+  .fadeIn.visible {
+    opacity: 1;
+  }
+  
+////////////////////////////
+.services{
+    background-color: #f7f7f7;
+}
+.servicons{
+    font-size: 30px;
+    margin-bottom: 20px;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    background-color: #f4f4f4;
+    transition: all .5s;
+}
+.servitem:hover .servicons{
+    color: #f4f4f4 !important;
+    background-color: #e65f78;
+}
+
+// //////////
+.visible{
+    overflow: hidden;
+}
+.visible img{
+    transition: transform .4s;
+}
+.visible:hover img{
+transform:scale(1.5);
+} 

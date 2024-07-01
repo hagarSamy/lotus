@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./About.module.scss";
 import { Link } from "react-router-dom";
 
+
 export default function About({ userData }) {
 
-  
   return (
     <>
       <div className="container" id="#aboutSec">
@@ -29,21 +29,29 @@ export default function About({ userData }) {
                         data-bs-interval="1500"
                       >
                         <img
+                          src={require("./3.jpg")}
+                          className="d-block w-100 rounded-2"
+                          alt="..."
+                        />
+                      </div>
+                      <div className="carousel-item" data-bs-interval="1500">
+                        <img
+                          src={require("./pexels-ahmedelbetar-4898083.jpg")}
+                          className="d-block w-100 rounded-2"
+                          alt="..."
+                        />
+                      </div>
+                 
+                      <div className="carousel-item" data-bs-interval="1500">
+                        <img
+                          src={require("./6.jpg")}
+                          className="d-block w-100 rounded-2"
+                          alt="..."
+                        />
+                      </div>
+                      <div className="carousel-item" data-bs-interval="1500">
+                        <img
                           src={require("./pexels-ahmedelbetar-4898084.jpg")}
-                          className="d-block w-100 rounded-2"
-                          alt="..."
-                        />
-                      </div>
-                      <div className="carousel-item" data-bs-interval="1500">
-                        <img
-                          src={require("./pexels-ahmedelbetar-4898083.jpg")}
-                          className="d-block w-100 rounded-2"
-                          alt="..."
-                        />
-                      </div>
-                      <div className="carousel-item" data-bs-interval="1500">
-                        <img
-                          src={require("./pexels-ahmedelbetar-4898083.jpg")}
                           className="d-block w-100 rounded-2"
                           alt="..."
                         />
@@ -109,7 +117,7 @@ export default function About({ userData }) {
             <div className="row mt-3">
 
               
-            <div className="col-md-6">
+            <div className={`col-md-6`}>
                 <div className="">
                   <h2 className="text-center">
                   what we offer to you ?
@@ -122,13 +130,13 @@ export default function About({ userData }) {
                 </div>
               </div>
               {/* ///////////////////////////// */}
-              <div className="col-md-6">
+              <div className= {`col-md-6  rounded-2 bg-transparent ${styles.visible}`}>
                 {/* /////////////////// */}
 
-                <div className="bg-white shadow-lg rounded-2">
+                <div className="bg-transparent shadow rounded-2">
                 <img
                           src={require("./IMG-20240615-WA0029.jpg")}
-                          className=" w-100  rounded-2"
+                          className=" w-100 rounded-2"
                           alt="..."
                         />
                 </div>
@@ -140,6 +148,82 @@ export default function About({ userData }) {
           </div>
         </div>
       </div>
+
+      {/* ////////// service section ///////// */}
+
+<section className="services py-5" id="serv-id">
+    <div className={`${styles.constTitle} text-center mb-5`}>
+        <h3 className="mb-2">services...</h3>
+    </div>
+    <div className="container">
+        <div className="row g-4 py-5">
+
+            <div className="col-lg-4 col-md-6">
+                <div className={`${styles.servitem} text-center bg-white shadow-lg rounded-2 p-4`}>
+                    <div className={`${styles.servicons} rounded-circle mx-auto mt-2`}>
+                        <i className="fa fa-laptop"></i>
+                    </div>
+                    <h6 className="fw-bolder fs-5 py-1">Unique Items</h6>
+                    <p className="text-muted"> A wide range of unique items and all of louts items is handmade with love</p>
+                </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+            <div className={`${styles.servitem} text-center bg-white shadow-lg rounded-2 p-4`}>
+            <div className={`${styles.servicons} rounded-circle mx-auto mt-2`}>
+            <i className="fa fa-bullhorn"></i>
+                    </div>
+                    <h6 className="fw-bolder fs-5 py-1">Friendly Handicrafts</h6>
+                    <p className="text-muted">creating environmentally conscious items, recycled materials and organic fabrics</p>
+                </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+            <div className={`${styles.servitem} text-center bg-white shadow-lg rounded-2 p-4`}>
+                <div className={`${styles.servicons} rounded-circle mx-auto mt-2`}>
+                <i className="fa fa-umbrella"></i>
+                    </div>
+                    <h6 className="fw-bolder fs-5 py-1">Quality of Work</h6>
+                    <p className="text-muted">Look for consistency in the quality of their products. High-quality materials, attention to detail</p>
+                </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+            <div className={`${styles.servitem} text-center bg-white shadow-lg rounded-2 p-4`}>
+                <div className={`${styles.servicons} rounded-circle mx-auto mt-2`}>
+                <i className="fa fa-diamond"></i>
+                    </div>
+                    <h6 className="fw-bolder fs-5 py-1">Professionalism</h6>
+                    <p className="text-muted">Trusted artisans communicate professionally. They also offer warranties or guarantees for their products</p>
+                </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+            <div className={`${styles.servitem} text-center bg-white shadow-lg rounded-2 p-4`}>
+                <div className={`${styles.servicons} rounded-circle mx-auto mt-2`}>
+                <i className="fa fa-television"></i>
+                    </div>
+                    <h6 className="fw-bolder fs-5 py-1">Offers</h6>
+                    <p className="text-muted">limited-time offers and flash sales. These exclusive promotions give you opportunity to save more on your favorite items.  </p>
+                </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+            <div className={`${styles.servitem} text-center bg-white shadow-lg rounded-2 p-4`}>
+                <div className={`${styles.servicons} rounded-circle mx-auto mt-2`}>
+                <i className="fa fa-camera"></i>
+                    </div>
+                    <h6 className="fw-bolder fs-5 py-1">Shopping Assistance</h6>
+                    <p className="text-muted">looking for a specific item or need help. Let us help you find the perfect piece that fits your style and budget.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
 
     </>
   );

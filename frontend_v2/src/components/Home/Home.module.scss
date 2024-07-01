@@ -50,23 +50,29 @@
     left:0;
 }
 // ////// home section
-.homeSec{
-    // background-image:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.3)),url(../../../public/pexels-yoendry-13460151.jpg);
-    background-image:url(../../../public/pexels-ahmedelbetar-4898083.jpg);
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    color:whitesmoke;
-    width:100%;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif    
+.homeSec {
+  background-image: 
+    linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.4), rgba(135,206,250,.8)), 
+    url(../../../public/1.jpg);
+
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  color: whitesmoke;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 h1, h2{
     font-family: "Dancing Script", cursive;
+}
+.homeSec h2{
+  color:white !important;
 }
 .btn1 {
     font-size: 20px !important;
