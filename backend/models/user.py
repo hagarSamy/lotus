@@ -13,7 +13,7 @@ class User(BaseModel, Base):
     is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
 
-    orders = relationship('Order', backref='user', cascade="all, delete, delete-orphan")
+    # orders = relationship('Order', backref='user', cascade="all, delete, delete-orphan")
 
 
     def self_password(self, password):

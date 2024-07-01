@@ -73,19 +73,19 @@ export default function Register() {
   let submitForm = async (e) => {
     e.preventDefault(); // prevent default reload of the form
     if (validateUserData()) {
-        let { data } = await axios.post(
+        let response = await axios.post(
           "http://localhost:5000/api/v1/register",
           user
         );
-    console.log(data);
+    console.log(response);
       if (
-        data?.message ===
+        response?.data?.message ===
         "Registered successfully."
       ) {
         notify("Registered successfully. Please check your email to confirm your registration.");
         goToLogin();
       } else {
-        setErrorMsg(data?.message); // set by error message from backend
+        setErrorMsg(response.data); // set by error message from backend
       }
     }
 

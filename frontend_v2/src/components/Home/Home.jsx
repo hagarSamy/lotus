@@ -31,8 +31,8 @@ $('.list-unstyled li.test33').click(function(){
     $('.test').fadeOut(2500).slideUp(2500);
     const typed = new Typed(el.current, {
       strings: [
-        "with care, treasure with love.",
-        " with care, treasure with love.",
+        "with care, treasured with love.",
+        " with care, treasured with love.",
       ],
       smartBackspace: true,
       loop: true,

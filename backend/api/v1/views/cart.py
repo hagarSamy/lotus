@@ -144,11 +144,12 @@ def checkout(user_id):
         data = request.get_json()
     except:
         abort(400, description="Not a JSON")
-    email = data['email']
-    if not email:
-        abort(400, description="Email is required")
+    email = data.get('email')
+    # if not email:
+    #     abort(400, description="Email is required")
     user = storage.get_one(User, "id", user_id)
     name = user.username
+    # email = user.email
     
     # Fetch cart items for the user
     # cart_items = storage.all(CartItem).values()

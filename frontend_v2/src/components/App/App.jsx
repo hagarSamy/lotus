@@ -44,7 +44,9 @@ useEffect(()=>{
 
 // in logout remove data from localstorage, got to home page
 let logoutUser = ()=>{
-  localStorage.removeItem('token');
+  // localStorage.removeItem('token');
+  localStorage.clear();
+  window.location.reload()
   setUserData(null);
   return <Navigate to='/' />
 
@@ -57,7 +59,7 @@ let logoutUser = ()=>{
       {path:'register', element:<Register />},
       {path:'products', element:<Products />},
       {path:'productdetails/:id', element:<Productdetails />},
-      {path:'cart', element:<ProtectedRoute userData={userData}><Cart /></ProtectedRoute>},
+      {path:'cart', element:<ProtectedRoute userData={userData}><Cart userData={userData}/></ProtectedRoute>},
       {path:'profile', element:<ProtectedRoute userData={userData}><Profile userData={userData}/></ProtectedRoute>},
       {path:'dashboardtest', element:<ProtectedRoute userData={userData}><DashboardTest userData={userData}/></ProtectedRoute>},
       {path:'manageproduct', element:<ProtectedRoute userData={userData}><HomeProduct /></ProtectedRoute>},

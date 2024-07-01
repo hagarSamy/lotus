@@ -37,12 +37,12 @@ export default function Cart({ userData }) {
 
   function validateUserData() {
     let rules = Joi.object({
-      address: Joi.string().min(10).max(50).required(),
+      address: Joi.string().min(5).max(50).required(),
       email: Joi.string().email({
         minDomainSegments: 2,
         tlds: { allow: ["com"] },
       }),
-      phone: Joi.string().pattern(/^[0-9]{10}$/).required(),
+      phone: Joi.string().pattern(/^[0-9]{11}$/).required(),
     });
     let validationResult = rules.validate(user, { abortEarly: false });
     console.log(validationResult);
@@ -80,14 +80,15 @@ export default function Cart({ userData }) {
         })),
         user: user
       };
+      console.log(payload)
 
       
-      let { data } = await axios.post(`http://localhost:5000/api/v1/cart/checkout/${userData.id}`, payload);
-      if (data.message === "success") {
+      let { data } = await axios.post(`http://localhost:5000/api/v1/cart/checkout/${userData.user_id}`, user);
+      if (data.message === "Order confirmed.") {
        localStorage.removeItem('cartItems');
         localStorage.removeItem('cartCount');
        cartItems = [];
-        goToproduct();
+        // goToproduct();
       } else {
         alert('Fail to contact you on mail, please try again !!!!');
       }
@@ -106,6 +107,7 @@ export default function Cart({ userData }) {
 
   let { cartItems } = useContext(CartContext);
   const { removeFromCart } = useContext(CartContext);
+  console.log(userData)
   console.log("Adding items from cart:", cartItems);
 
   return (
