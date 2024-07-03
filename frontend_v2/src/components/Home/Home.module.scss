@@ -1,5 +1,41 @@
 @import '../../index.scss';
 // @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat+Alternates&family=Roboto:wght@300&display=swap');
+.takeToB{
+  position: fixed;
+  bottom: 90px;
+  border: none;
+  border-radius: 50%;
+  width:50px;
+  height: 50px;
+  right: 20px;
+  background-color: rgb(77, 193, 232);
+  z-index: 999;
+  transition: bottom 0.8s ease-in-out;
+}
+
+.takeToB:hover{
+  background-color: #e65f78;
+}
+  /* styles.css */
+@keyframes scrollAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.move {
+  animation-name: scrollAnimation;
+  animation-duration: 0.9s;
+  animation-timing-function: ease-in-out; 
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
 
 .headFont {
     font-weight: 800;
@@ -8,7 +44,7 @@
 }
 .colorBox {
     position: fixed;
-    top: 200px;
+    top: 150px;
     left:-125px;
     display: flex;
     z-index: 999;
@@ -37,7 +73,7 @@
 }
 
 .item1{
-    background-color: blueviolet !important;
+    background-color: goldenrod !important;
 }
 .item2{
     background-color: yellowgreen !important;

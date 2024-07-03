@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Home.module.scss";
 import Contact from "../Contact/Contact";
 import About from "../About/About";
@@ -8,22 +8,49 @@ import Typed from "typed.js";
 import $ from "jquery"
 
 export default function Home({ userData }) {
-  /////////////////////////////
-  $('.list-unstyled li.test11').click(function(){
-    let curColor = $(this).css('backgroundColor'); // Get the background color of the clicked element
-    alert(curColor);
-});
+  const [isPressed, setIsPressed] = useState(true);
 
-$('.list-unstyled li.test22').click(function(){
-  let curColor = $(this).css('backgroundColor'); // Get the background color of the clicked element
-  alert(curColor);
-});
+  const scrollToBottom = () => {
+    setIsPressed(!isPressed); // Toggle the isPressed state
 
-$('.list-unstyled li.test33').click(function(){
-  let curColor = $(this).css('backgroundColor'); // Get the background color of the clicked element
-  $('.theme').css('color', curColor);
-  alert(curColor);
-});
+    if (!isPressed) {
+      // If isPressed is true, scroll to the top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      // Otherwise, scroll to the bottom
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+  
+  useEffect(() => {
+    window.onload = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth', // Optional: for a smooth scroll effect
+      });
+    };
+  }, []);
+  //////////////////////////
+
+  const [currentColor, setCurrentColor] = useState('#e65f78');
+
+  const handleClick = (event) => {
+    // Prevent default action to stop page scrolling or jumping
+    event.preventDefault();
+
+    // Get the background color of the clicked element
+    const curColor = window.getComputedStyle(event.target).backgroundColor;
+
+    // Update the state with the new color
+    setCurrentColor(curColor);
+  };
+
 
   const el = React.useRef(null);
 
@@ -53,9 +80,9 @@ $('.list-unstyled li.test33').click(function(){
       <div className={`${styles.colorBox}`}>
         <div className={`${styles.colorOption}`}>
           <ul className="list-unstyled">
-            <li className={`${styles.item} ${styles.item1} test11`}></li>
-            <li className={`${styles.item} ${styles.item2} test22`}></li>
-            <li className={`${styles.item} ${styles.item3} rest33`}></li>
+            <li className={`${styles.item} ${styles.item1} test11`} onClick={handleClick}></li>
+            <li className={`${styles.item} ${styles.item2} test22`} onClick={handleClick}></li>
+            <li className={`${styles.item} ${styles.item3} rest33`} onClick={handleClick}></li>
           </ul>
         </div>
         <i className="fa fa-cog fa-spin"></i>
@@ -64,19 +91,19 @@ $('.list-unstyled li.test33').click(function(){
       <div className={`${styles.homeSec}`}>
         <div className="test bg-info fixed-top"> Have anice time, happy shopping</div>
         <div>
-          <h1 className={`${styles.headFont} my-5 theme`}>Lotus</h1>
+          <h1 className={`${styles.headFont} my-5 theme`}  style={{ color: currentColor }}>Lotus</h1>
           <h2 className="">
-            Crafted <span ref={el} />
+            Crafted <span ref={el} style={{ color: currentColor }} />
           </h2>
           {userData ? "" : (
-            <div>
-              <button className={`btn ${styles.btn1} m-2 px-4 mt-5`}>
-                <Link className="text-decoration-none" to="login">
+            <div style={{ color: currentColor }}>
+              <button className={`btn ${styles.btn1} m-2 px-4 mt-5`} style={{ color: currentColor }}>
+                <Link className="text-decoration-none" to="login" >
                   Log in
                 </Link>
               </button>
-              <button className={`btn ${styles.btn2} m-2 px-3 mt-5`}>
-                <Link className="text-decoration-none" to="register">
+              <button className={`btn ${styles.btn2} m-2 px-3 mt-5`} style={{ color: currentColor }}>
+                <Link className="text-decoration-none" to="register" >
                   Register for free
                 </Link>
               </button>
@@ -84,12 +111,14 @@ $('.list-unstyled li.test33').click(function(){
           ) }
         </div>
       </div>
+      <button className={`${styles.takeToB} ${styles.move} shadow`} onClick={scrollToBottom} 
+      style={{ background: currentColor }}><i class="fa-solid fa-up-down"></i></button>
 
       <About userData={userData} />
 
       <div className={`${styles.statistic}`}>
         <div className={`${styles.constTitle} text-center mb-4`}>
-          <h3 className="mb-2 pt-5 theme">Our statistics...</h3>
+          <h3 className="mb-2 pt-5 theme" >Our statistics...</h3>
         </div>
         <div className="count py-3">
           <div className="container">
@@ -214,6 +243,7 @@ $('.list-unstyled li.test33').click(function(){
   </div>
 
       <Contact />
+
       <Footer />
     </>
   );
