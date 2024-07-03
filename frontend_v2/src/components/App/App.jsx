@@ -89,12 +89,15 @@ theme="dark"
       <Online>
         <RouterProvider router={routes} />
       </Online>
-      <Offline className={`d-flex justify-content-center align-items-center bg-warning`}>
-        <div>
+      <Offline >
+        <div className='d-flex justify-content-center align-items-center vh-100 bg-secondary text-center'>
+        <div >
           <h1> you are offline </h1>
+          <br />
           <h1>check your internet connection</h1>
         </div>
-        </Offline>
+        </div>
+       </Offline>
     </div>
     </>
   );

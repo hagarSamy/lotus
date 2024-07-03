@@ -96,13 +96,13 @@ export default function Home({ userData }) {
             Crafted <span ref={el} style={{ color: currentColor }} />
           </h2>
           {userData ? "" : (
-            <div style={{ color: currentColor }}>
-              <button className={`btn ${styles.btn1} m-2 px-4 mt-5`} style={{ color: currentColor }}>
+            <div>
+              <button className={`btn ${styles.btn1} m-2 px-4 mt-5`} style={{ background: currentColor }}>
                 <Link className="text-decoration-none" to="login" >
                   Log in
                 </Link>
               </button>
-              <button className={`btn ${styles.btn2} m-2 px-3 mt-5`} style={{ color: currentColor }}>
+              <button className={`btn ${styles.btn2} m-2 px-3 mt-5`}>
                 <Link className="text-decoration-none" to="register" >
                   Register for free
                 </Link>
@@ -112,13 +112,13 @@ export default function Home({ userData }) {
         </div>
       </div>
       <button className={`${styles.takeToB} ${styles.move} shadow`} onClick={scrollToBottom} 
-      style={{ background: currentColor }}><i class="fa-solid fa-up-down"></i></button>
+      style={{ background: currentColor }}><i className="fa-solid fa-up-down"></i></button>
 
-      <About userData={userData} />
+      <About userData={userData} currentColor={currentColor}/>
 
       <div className={`${styles.statistic}`}>
         <div className={`${styles.constTitle} text-center mb-4`}>
-          <h3 className="mb-2 pt-5 theme" >Our statistics...</h3>
+          <h3 className="mb-2 pt-5 theme" style={{ color: currentColor }}>Our statistics...</h3>
         </div>
         <div className="count py-3">
           <div className="container">
@@ -160,7 +160,7 @@ export default function Home({ userData }) {
 {/* //// developer /// */}
 <div className={`${styles.developer}`}>
         <div className={`${styles.constTitle} text-center mb-2`}>
-          <h3 className="mb-2 pt-5 theme">Our Developer..</h3>
+          <h3 className="mb-2 pt-5 theme" style={{ color: currentColor }}>Our Developer..</h3>
         </div>
 
 <div className="count py-5">
@@ -170,7 +170,7 @@ export default function Home({ userData }) {
     <div className={`${styles.flipcard} `}>
       <div className={`${styles.flipcardfront}`}>
         <div className={`${styles.inner}`}>
-          <h3>Hajar</h3>
+          <h3 style={{ color: currentColor }}>Hajar</h3>
         </div>
       </div>
       <div className={`${styles.flipcardback}`}>
@@ -193,7 +193,7 @@ export default function Home({ userData }) {
     <div className={`${styles.flipcard}`}>
       <div className={`${styles.flipcardfront}`}>
         <div className={`${styles.inner}`}>
-          <h3>Aya</h3>
+          <h3 style={{ color: currentColor }}>Aya</h3>
         </div>
       </div>
       <div className={`${styles.flipcardback}`}>
@@ -216,7 +216,7 @@ export default function Home({ userData }) {
     <div className={`${styles.flipcard} `}>
       <div className={`${styles.flipcardfront}`}>
         <div className={`${styles.inner}`}>
-          <h3>Sabah</h3>
+          <h3 style={{ color: currentColor }}>Sabah</h3>
         </div>
       </div>
       <div className={`${styles.flipcardback}`}>
@@ -242,9 +242,9 @@ export default function Home({ userData }) {
 
   </div>
 
-      <Contact />
+      <Contact currentColor={currentColor} />
 
-      <Footer />
+      <Footer currentColor={currentColor} />
     </>
   );
 }
