@@ -145,13 +145,56 @@ export default function About({ userData }) {
               </div>
 
             </div>
+         
+         
+            <div className="row mb-3 mt-5">
+            <div className= {`col-md-6  rounded-2 bg-transparent ${styles.visible}`}>
+                {/* /////////////////// */}
+
+                <div className="bg-transparent shadow rounded-2">
+                <img
+                          src={require("./IMG-20240528-WA0028.jpg")}
+                          className=" w-100 rounded-2"
+                          alt="..."
+                        />
+                </div>
+
+                {/* /////////////////// */}
+              </div>
+
+              <div className="col-md-6">
+                <div className="">
+                  <h3>
+                  Our items are not merely physical possessions;
+                  they embody the essence of creativity and commitment,
+                   mirroring the artist's path and the principles they champion.
+                  </h3>
+                  <h2 className="text-center">
+                    We are the gate to special items ...
+                  </h2>
+                  <h3>
+                    if you an customer and looking for a unique items, you are in the right place.
+                  </h3>
+                  <h3>hurry up and join us.</h3>
+                </div>
+                {userData ? "" : (
+                  <div className="d-flex justify-content-end mt-2">
+                    <Link to="/register">
+                      <button className="btn btn-danger px-5 py-2">
+                        Join Us
+                      </button>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* ////////// service section ///////// */}
 
-<section className="services py-5" id="serv-id">
+<section className="services pb-5 pt-3" id="serv-id">
     <div className={`${styles.constTitle} text-center mb-5`}>
         <h3 className="mb-2">services...</h3>
     </div>

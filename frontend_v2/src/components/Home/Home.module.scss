@@ -155,7 +155,7 @@ i:hover{
     min-height: 300px;
     height: auto;
     background-color: #000000;
-    background-image:   url('./dev3.jpg');
+    background-image:   url('./Hajar.jpg');
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -167,12 +167,13 @@ i:hover{
   
   .flipcard:nth-of-type(2) .flipcardfront,
   .flipcard:nth-of-type(2) .flipcardback {
-    background-image: url('./dev2.jpg');
+    background-image: url('./Aya.jpg');
   }
   
   .flipcard:nth-of-type(3) .flipcardfront,
   .flipcard:nth-of-type(3) .flipcardback {
-    background-image:  url(https://wallpapercave.com/wp/wp3842313.jpg);
+    // background-image:  url(https://wallpapercave.com/wp/wp3842313.jpg);
+    background-image:  url('sabah.jpg');
   }
   
   .flipcardfront {

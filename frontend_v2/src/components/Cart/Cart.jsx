@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Joi from "joi";
 // import styles from "./Cart.module.scss";
@@ -28,10 +29,10 @@ export default function Cart({ userData }) {
   });
 
     // /////////////////// navigation ///////////////////////
-    let navigate = useNavigate();
-    let goToproduct = () => {
-      navigate("/products");
-    };
+    // let navigate = useNavigate();
+    // let goToproduct = () => {
+    //   navigate("/products");
+    // };
   /////////////  validation //////////////////
   const [errorDetails, setErrors] = useState([]);
 
