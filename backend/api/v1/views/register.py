@@ -115,7 +115,7 @@ def activate_user(token):
         token = token
         if not token:
             abort(400, description="Missing activation token.")
-        
+
         email = s.loads(token, salt='email-confirm', max_age=10800)  # Token valid for 3 hour
     except SignatureExpired:
         return jsonify({'message': 'The confirmation link has expired. Please request a new confirmation email.'}), 400
