@@ -65,11 +65,17 @@ export default function CartContextProvider({ children }) {
       );
       window.location.reload();
     }
+
+  };
+  const emptyCart = () => {
+    setCartItems([]);
+    setCartCount(0);
+    localStorage.removeItem('cartState');
   };
   
   return (
     <CartContext.Provider
-      value={{ cartCount, changeCart, addToCart, cartItems, removeFromCart }}
+      value={{ cartCount, changeCart, addToCart, cartItems, removeFromCart, emptyCart }}
     >
       {children}
     </CartContext.Provider>

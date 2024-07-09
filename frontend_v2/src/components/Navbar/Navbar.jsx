@@ -6,6 +6,7 @@ import { CartContext } from "../Context/Context";
 
 export default function Navbar({ userData, logoutUser }) {
   let x = useContext(CartContext);
+  const showCartLink = userData && !userData.is_admin;
 
   return (
     <nav className="navbar navbar-expand-md bg-light fixed-top py-3">
@@ -47,12 +48,12 @@ export default function Navbar({ userData, logoutUser }) {
           {/* /////////////////////////////////////// */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             {/* /////////// */}
-            {userData ? (
-              <>
-                <div className={`${styles.item} px-1`}>
+            {userData ? (  <div className={`${styles.item} px-1`}>
                   <Link to="profile">Hello, {userData.username}</Link>
-                </div>
-                <li className={`${styles.item} nav-item px-1`}>
+                </div>) : ""}
+
+            
+                {showCartLink ? ( <li className={`${styles.item} nav-item px-1`}>
                   <Link
                     className={`${styles.dLink} nav-link position-relative border-0 mx-3`}
                     to="cart"
@@ -63,7 +64,11 @@ export default function Navbar({ userData, logoutUser }) {
                       {x.cartCount}
                     </span>
                   </Link>
-                </li>
+                </li>) : ""}
+
+            {userData ? (
+              <>
+
                 <li className={`${styles.item} nav-item px-1`}>
                   <Link
                     className={`${styles.dLink} nav-link `}
@@ -87,6 +92,7 @@ export default function Navbar({ userData, logoutUser }) {
                 </li>
               </>
             )}
+
 
             {userData?.is_admin ? (
               <>

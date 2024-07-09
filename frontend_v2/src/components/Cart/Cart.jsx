@@ -9,6 +9,9 @@ import Confetti from 'react-confetti';
 import { toast } from 'react-toastify';
 
 export default function Cart({ userData }) {
+  const { emptyCart } = useContext(CartContext);
+
+
   const notify = () => toast.success('🦄 WOW order packaged, contact to you soon', {
     position: "bottom-right",
     autoClose: 3000,
@@ -28,11 +31,6 @@ export default function Cart({ userData }) {
     address: ""
   });
 
-    // /////////////////// navigation ///////////////////////
-    // let navigate = useNavigate();
-    // let goToproduct = () => {
-    //   navigate("/products");
-    // };
   /////////////  validation //////////////////
   const [errorDetails, setErrors] = useState([]);
 
@@ -86,9 +84,7 @@ export default function Cart({ userData }) {
       
       let { data } = await axios.post(`http://localhost:5000/api/v1/cart/checkout/${userData.user_id}`, user);
       if (data.message === "Order confirmed.") {
-       localStorage.removeItem('cartItems');
-        localStorage.removeItem('cartCount');
-       cartItems = [];
+        emptyCart();
         // goToproduct();
       } else {
         alert('Fail to contact you on mail, please try again !!!!');
