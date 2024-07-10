@@ -41,13 +41,6 @@ export default function Contact({ currentColor }) {
                 </div>
             </div>
 
-            {/* <div className="cont-info ">
-                <div className="row justify-content-between gx-4">
-                <input className="fname  my-3 py-2 rounded-3 border-0" type="text" placeholder="Name">  
-                <input  className="uEmail  my-3 py-2 rounded-3 border-0" type="text"  placeholder="Email">  
-               <textarea className=" my-3 rounded-3 border-0" rows="6" placeholder="Message" style="width: 100%;"></textarea>
-               <button className="btn btn-dark cont-btn py-2 my-2">submit</button>
-                </div> */}
             </div>
         </div>
     </div>
