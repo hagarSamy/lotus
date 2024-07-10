@@ -50,8 +50,11 @@ We wanted to bridge the gap between the creators and those who appreciate and va
 # final project blog article, author(s) LinkedIn :
     https://www.linkedin.com/pulse/lotus-sabah-ahmed-omcsf
     author: Sabah Ahmed
-    linkedIn: https://www.linkedin.com/in/sabah-ahmed-0a2a5b100/    
+    linkedIn: https://www.linkedin.com/in/sabah-ahmed-0a2a5b100/  
 
+    https://www.linkedin.com/feed/update/urn:li:activity:7216856712354418688/
+    author: Aya anwar
+    linkedIn:https://www.linkedin.com/in/aya-anwar-473115279/  
 
 
 # Usage :
