@@ -28,8 +28,8 @@ export default function DashboardTest() {
 </nav> */}
 
 <div className="text-center mt-5 ">
-                    <h1>Welcome, to admin dashboard</h1>
-                    <h1>Have a nice time</h1>
+                    <h1>Welcome to admin dashboard</h1>
+                    <h1>Have a nice time!</h1>
                     <div className="d-flex justify-content-center">                    
                       <hr className="w-50" />
                     </div>

@@ -109,9 +109,6 @@ def activate_user(token):
     Handle the activation of the user account.
     """
     try:
-        # Retrieve token from request data (assuming sent from frontend form)
-        # data = request.get_json()
-        # token = data['token']
         token = token
         if not token:
             abort(400, description="Missing activation token.")

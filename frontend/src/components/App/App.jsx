@@ -5,7 +5,6 @@ import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Cart from '../Cart/Cart';
-import Dashboard from '../Dashboard/Dashboard';
 import Profile from '../Profile/Profile';
 import Products from '../Products/Products';
 import Productdetails from '../Productdetails/Productdetails';
@@ -15,6 +14,14 @@ import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {Online, Offline} from 'react-detect-offline';
+import Create from '../DashboardTest/Create';
+import Update from '../DashboardTest/Update';
+import DashboardTest from '../DashboardTest/DashboardTest';
+import CreateProduct from '../DashboardTest/CreateProduct';
+import UpdateProduct from '../DashboardTest/UpdateProduct';
+import HomeUser from '../DashboardTest/HomeUser';
+import HomeProduct from '../DashboardTest/HomeProduct';
+
 
 
 function App() {
@@ -37,7 +44,9 @@ useEffect(()=>{
 
 // in logout remove data from localstorage, got to home page
 let logoutUser = ()=>{
-  localStorage.removeItem('token');
+  // localStorage.removeItem('token');
+  localStorage.clear();
+  window.location.reload()
   setUserData(null);
   return <Navigate to='/' />
 
@@ -45,14 +54,20 @@ let logoutUser = ()=>{
 //  routes
   let routes = createBrowserRouter([
     {path:'/', element:<Layout userData={userData} logoutUser={logoutUser}/>, errorElement:<Notfound />, children:[
-      {index:true, element:<Home />},
+      {index:true, element:<Home userData={userData}/>},
       {path:'login', element:<Login saveUserData={saveUserData}/>},
       {path:'register', element:<Register />},
       {path:'products', element:<Products />},
       {path:'productdetails/:id', element:<Productdetails />},
-      {path:'cart', element:<Cart />},
+      {path:'cart', element:<ProtectedRoute userData={userData}><Cart userData={userData}/></ProtectedRoute>},
       {path:'profile', element:<ProtectedRoute userData={userData}><Profile userData={userData}/></ProtectedRoute>},
-      {path:'dashboard', element:<Dashboard userData={userData}/>}
+      {path:'dashboardtest', element:<ProtectedRoute userData={userData}><DashboardTest userData={userData}/></ProtectedRoute>},
+      {path:'manageproduct', element:<ProtectedRoute userData={userData}><HomeProduct /></ProtectedRoute>},
+      {path:'manageuser', element:<ProtectedRoute userData={userData}><HomeUser /></ProtectedRoute>},
+      {path:'create', element:<ProtectedRoute userData={userData}><Create /></ProtectedRoute>},
+      {path:'createproduct', element:<ProtectedRoute userData={userData}><CreateProduct /></ProtectedRoute>},
+      {path:'update/:id', element:<ProtectedRoute userData={userData}><Update /></ProtectedRoute>},
+      {path:'updateproduct/:id', element:<ProtectedRoute userData={userData}><UpdateProduct /></ProtectedRoute>}
     ]}
   ])
   return (
@@ -70,12 +85,19 @@ draggable
 pauseOnHover
 theme="dark"
 />
-    <RouterProvider router={routes} />
-
-      {/* <Online>
+    {/* <RouterProvider router={routes} /> */}
+      <Online>
         <RouterProvider router={routes} />
       </Online>
-      <Offline>you are offline</Offline> */}
+      <Offline >
+        <div className='d-flex justify-content-center align-items-center vh-100 bg-secondary text-center'>
+        <div >
+          <h1> you are offline </h1>
+          <br />
+          <h1>check your internet connection</h1>
+        </div>
+        </div>
+       </Offline>
     </div>
     </>
   );

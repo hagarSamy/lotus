@@ -30,15 +30,6 @@ export default function Login({saveUserData}) {
       return true;
     }
   }
-  // function showAlert(inputName) {
-  //   let x = errorDetails.filter((e) => {
-  //     return e.message.includes(inputName);
-  //   });
-  //   if (x.length > 0 && x[0].message.includes("pattern")) {
-  //     return <p className="py-2">wrong email or password</p>;
-  //   }
-  //   return <p className="py-2">{x[0]?.message}</p>;
-  // }
   // /////////////////// navigation ///////////////////////
   let navigate = useNavigate();
   let goToHome = () => {
@@ -50,17 +41,24 @@ export default function Login({saveUserData}) {
   let submitForm = async (e) => {
     e.preventDefault(); // prevent default reload of the form
     if (validateUserData()) {
-        let { data } = await axios.post(
+      //   let { data } = await axios.post(
+      //   "http://localhost:5000/api/v1/login",
+      //   user
+      // );
+      let { data } = await axios.post(
         "http://localhost:5000/api/v1/login",
         user
       );
+      //  just to test by db.json
+      goToHome();
+///////////////////////
       console.log(data)
-      if (data.message === "Login successful") {
+      if (data?.message === "Login successful") {
         localStorage.setItem('token', data.token);
         saveUserData();
         goToHome();
       } else {
-        setErrorMsg(data.message); // set by error message from backend
+        setErrorMsg(data?.message); // set by error message from backend
       }
     }
   };
@@ -80,7 +78,7 @@ export default function Login({saveUserData}) {
           <div className=" d-flex justify-content-center align-items-center">
             <h2 className="text-center border-bottom w-25 my-5">Login Form</h2>
           </div>
-          {errorMsg ? <div className="alert alert-danger p-2"></div> : ""}
+          {errorMsg ? <div className="alert alert-danger p-2">{{errorMsg}}</div> : ""}
 
           <form onSubmit={submitForm}>
             <div className="input-data my-2">
@@ -110,9 +108,9 @@ export default function Login({saveUserData}) {
             </button>
             
             <div className=" my-5 text-center">
-              <Link  className={`${styles.nLink} text-decoration-none`} to="/" >home</Link>
+              <Link  className={`${styles.nLink} `} to="/" >home</Link>
               <br />
-              <Link  className={`${styles.nLink} text-decoration-none`} to="/register" >create account</Link>
+              <Link  className={`${styles.nLink} `} to="/register" >create account</Link>
             </div>
           </form>
         </div>

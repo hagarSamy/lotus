@@ -40,10 +40,10 @@ export default function Productdetails() {
           <span className='text-success'> Owner :</span>  {productItem.owner}
           </p>
           <p>
-            <span className='text-success'> price :</span> {productItem.price}
+            <span className='text-success'> Price :</span> {productItem.price}
           </p>
           <p>
-          <span className='text-success'> stock :</span>  {productItem.stock}
+          <span className='text-success'> Stock :</span>  {productItem.stock}
           </p>
           <div className='d-flex justify-content-end'>
           <Link

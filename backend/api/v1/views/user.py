@@ -71,11 +71,3 @@ def update_user(id):
             setattr(user, k, v)
     storage.save()
     return jsonify(user.to_dict()), 200
-
-# @app_views.route('/users', methods=['POST'], strict_slashes=False)
-# @swag_from('documentation/user/create_user.yml')
-# def create_user(id):
-#     """
-#     create a user
-#     """
-#     required_fields = 

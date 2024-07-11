@@ -22,7 +22,7 @@ export default function HomeUser() {
       //  delete user
       const handleDelete = async (id) => {
         const confirm = window.confirm(
-          "Are you realy need to delete this record ? "
+          "Do you realy need to delete this record? "
         );
         if (confirm) {
           await axios.delete(`http://localhost:5000/users/${id}`);

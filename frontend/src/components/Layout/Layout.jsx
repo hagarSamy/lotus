@@ -4,6 +4,7 @@ import {Outlet} from 'react-router-dom'
 import CartContextProvider from '../Context/Context'
 
 export default function Layout({userData, logoutUser}) {
+
   return (
     <>
     <CartContextProvider>

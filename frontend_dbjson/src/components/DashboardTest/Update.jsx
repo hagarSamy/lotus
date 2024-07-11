@@ -23,7 +23,7 @@ export default function Update() {
         await axios.put(`http://localhost:5000/users/${id}`, updateUser);
         navigate('/manageuser')
       } catch (error) {
-        console.error("Error update user:", error);
+        console.error("Error updating user:", error);
       }
     };
 

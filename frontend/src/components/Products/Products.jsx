@@ -33,14 +33,14 @@ export default function Products() {
 
   // to get all products from API
   let getAllProducts = async () => {
-    // first test code by fake APIs
-    // let { data } = await axios.get("https://fakestoreapi.com/products");
-    // let { data } = await axios.get("http://localhost:5000/api/v1/products");
-    let { data } = await axios.get("http://localhost:3000/products");
-    setProductItems(data); //put data in holder function
-    console.log(data);
+    let { data } = await axios.get("http://localhost:5000/api/v1/products");
+    if(data){
+      setProductItems(data); //put data in holder function
+      console.log(productItems);
+    }else{
+      console.log(data);
+    }
   };
-  console.log(productItems);
 
   //function to get all images
   function getImage(e) {
@@ -57,8 +57,8 @@ export default function Products() {
           <h1>Welcome, to your home ...</h1>
         </div>
         <div className="row g-4 py-5 justify-content-center align-items-center">
-          {productItems.length > 0 ? (
-            productItems.map((item, index) => (
+          {productItems?.length > 0 ? (
+            productItems?.map((item, index) => (
               <div key={index} className=" col-lg-4 col-md-6">
                 <div className="servItem  bg-white shadow-lg rounded-2 p-4 ">
                   <img
@@ -77,18 +77,20 @@ export default function Products() {
                     </p>
                     <h5>owner: {item.owner}</h5>
                     <h5>price: {item.price}</h5>
-                    <div className="d-flex justify-content-between ">
-                      <Link
-                        className="text-danger"
+                    <h5>stock: {item.stock}</h5>
+                    <Link
+                        className="text-info"
                         to={`/productdetails/${item.id}`}
                       >
-                        Show More...
+                        More Details...
                       </Link>
+                    <div className="d-flex justify-content-end mt-3 ">
+
                       <button
                         onClick={() => {
-                          x.changeCart(); // Assuming this is the function you want to execute first
-                          console.log("Adding item:", item); // Debugging line
-                          addToCart(item); // Second action
+                          x.changeCart(); 
+                          console.log("Adding item:", item);
+                          addToCart(item);
                           notify();
                         }}
                         className="border-0"
@@ -129,7 +131,7 @@ export default function Products() {
               </div>
             ))
           ) : (
-            <i className="fas fa spinner bg-danger"></i>
+            <i className="fas fa spinner text-center"></i>
           )}
         </div>
       </div>

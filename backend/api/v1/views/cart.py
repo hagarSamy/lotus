@@ -17,7 +17,6 @@ def get_cart(user_id):
     """
     Retrieve user's cart items
     """
-    # cart_items = storage.all(CartItem, filter={'user_id': user_id})
     cart_items = storage.all(CartItem).values()
     user_cart_items = [item for item in cart_items if item.user_id == user_id]
     return jsonify([item.to_dict() for item in user_cart_items]), 200
@@ -145,8 +144,8 @@ def checkout(user_id):
     except:
         abort(400, description="Not a JSON")
     email = data.get('email')
-    # if not email:
-    #     abort(400, description="Email is required")
+    if not email:
+        abort(400, description="Email is required")
     user = storage.get_one(User, "id", user_id)
     name = user.username
     # email = user.email
@@ -154,7 +153,7 @@ def checkout(user_id):
     # Fetch cart items for the user
     # cart_items = storage.all(CartItem).values()
     # if user_id:
-    # # Filter itemss by user_id using storage.all with filter
+    # # Filter items by user_id using storage.all with filter
     #     cart_itemss = [item for item in cart_items if item.user_id == user_id]
     # if not cart_items:
     #     abort(404, description="No cart items found for the user")

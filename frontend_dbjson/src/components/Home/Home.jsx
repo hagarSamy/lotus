@@ -15,7 +15,7 @@ export default function Home() {
 
   React.useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ['with care, treasures with love.', ' with care, treasures with love.'],
+      strings: ['with care, treasured with love.', ' with care, treasured with love.'],
       smartBackspace: true,
       loop: true,
       loopCount: Infinity,
